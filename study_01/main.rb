@@ -57,7 +57,7 @@ end
 
 # 06
 # method
-
+=begin
 def displayUrl(domain)
     puts "https://#{domain}"
 end
@@ -68,3 +68,27 @@ end
 
 displayUrl("www.google.com")
 puts getUrl("ja-jp.facebook.com")
+=end
+
+# 07
+# class
+
+class User
+    def initialize(name, age)
+        @name = name
+        @age = age
+    end
+
+    def introduce
+        puts "NAME: #{@name} / AGE: #{@age}"
+    end
+
+    def sayHello
+        puts "Hello!!"
+    end
+end
+
+mike = User.new("Mike", 26)
+mike.introduce();
+harvey = User.new("Harvey", 34)
+harvey.introduce();
