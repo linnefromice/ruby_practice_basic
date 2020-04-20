@@ -42,7 +42,7 @@ puts %W(one two three four)
 
 # 05
 # if
-
+=begin
 grade = %(C)
 if grade == "A"
     puts "Perfect!"
@@ -53,3 +53,18 @@ elsif grade == "C"
 else
     puts "Bad!"
 end
+=end
+
+# 06
+# method
+
+def displayUrl(domain)
+    puts "https://#{domain}"
+end
+
+def getUrl(domain)
+    return "https://#{domain}"
+end
+
+displayUrl("www.google.com")
+puts getUrl("ja-jp.facebook.com")
