@@ -22,7 +22,7 @@ puts TITLE
 
 # 03
 # object
-
+=begin
 games = {
     nintendo: "Switch",
     sony: "PS4"
@@ -31,3 +31,10 @@ puts games[:nintendo]
 puts games
 games[:nintendo] = "3DS"
 puts games
+=end
+
+# 04
+# %
+
+puts %(hello)
+puts %W(one two three four)
