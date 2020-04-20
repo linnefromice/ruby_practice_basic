@@ -35,6 +35,21 @@ puts games
 
 # 04
 # %
-
+=begin
 puts %(hello)
 puts %W(one two three four)
+=end
+
+# 05
+# if
+
+grade = %(C)
+if grade == "A"
+    puts "Perfect!"
+elsif grade == "B"
+    puts "Great!"
+elsif grade == "C"
+    puts "Good!"
+else
+    puts "Bad!"
+end
