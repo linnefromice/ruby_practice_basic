@@ -102,6 +102,12 @@ class User
     end
 end
 
+class Student < User
+    def self.printClassInfo
+        puts "[Student] VERSION #{VERSION}"
+    end
+end
+
 User.printClassInfo();
 puts User::VERSION
 
@@ -120,3 +126,6 @@ puts mike.age
 # mike.name = "rachel" <- only read
 mike.age = 18
 mike.introduce();
+
+Student.printClassInfo();
+puts Student::VERSION
