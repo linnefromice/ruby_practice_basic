@@ -77,6 +77,7 @@ class User
     attr_reader :name
     attr_accessor :age
     @@latest_name = 'NONE'
+    VERSION = 1.0
 
     def initialize(name, age)
         @name = name
@@ -92,10 +93,17 @@ class User
         puts "Hello!!"
     end
 
+    def self.printClassInfo
+        puts "[User] VERSION #{VERSION}"
+    end
+
     def self.printLatest
         puts "LATEST USER: #{@@latest_name}"
     end
 end
+
+User.printClassInfo();
+puts User::VERSION
 
 User.printLatest();
 mike = User.new("Mike", 26)
