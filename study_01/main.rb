@@ -71,15 +71,17 @@ puts getUrl("ja-jp.facebook.com")
 =end
 
 # 07, 08
-# class / accessor
+# class / accessor / class method & variables
 
 class User
     attr_reader :name
     attr_accessor :age
+    @@latest_name = 'NONE'
 
     def initialize(name, age)
         @name = name
         @age = age
+        @@latest_name = name
     end
 
     def introduce
@@ -89,12 +91,21 @@ class User
     def sayHello
         puts "Hello!!"
     end
+
+    def self.printLatest
+        puts "LATEST USER: #{@@latest_name}"
+    end
 end
 
+User.printLatest();
 mike = User.new("Mike", 26)
 mike.introduce();
+
+User.printLatest();
 harvey = User.new("Harvey", 34)
 harvey.introduce();
+
+User.printLatest();
 
 puts mike.name
 puts mike.age
