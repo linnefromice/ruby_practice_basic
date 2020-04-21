@@ -70,8 +70,8 @@ displayUrl("www.google.com")
 puts getUrl("ja-jp.facebook.com")
 =end
 
-# 07
-# class
+# 07, 08
+# class / accessor
 
 class User
     attr_reader :name
