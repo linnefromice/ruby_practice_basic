@@ -74,6 +74,9 @@ puts getUrl("ja-jp.facebook.com")
 # class
 
 class User
+    attr_reader :name
+    attr_accessor :age
+
     def initialize(name, age)
         @name = name
         @age = age
@@ -92,3 +95,9 @@ mike = User.new("Mike", 26)
 mike.introduce();
 harvey = User.new("Harvey", 34)
 harvey.introduce();
+
+puts mike.name
+puts mike.age
+# mike.name = "rachel" <- only read
+mike.age = 18
+mike.introduce();
