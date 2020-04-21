@@ -50,3 +50,15 @@ module MODULE_FOR
 end
 
 MODULE_FOR.main
+
+# each
+
+module MODULE_EACH
+    def self.main
+        (1..5).each do |i|
+            puts "Hello, each sentence #{i}"
+        end
+    end
+end
+
+MODULE_EACH.main
