@@ -38,3 +38,15 @@ module MODULE_CASE
 end
 
 MODULE_CASE.main
+
+# for
+
+module MODULE_FOR
+    def self.main
+        for i in 1..5
+            puts "Hello, for sentence #{i}"
+        end
+    end
+end
+
+MODULE_FOR.main
