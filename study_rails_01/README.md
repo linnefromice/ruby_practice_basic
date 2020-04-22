@@ -7,6 +7,11 @@
 - rails server -> 127.0.0.1:3000
 - rails g scaffold Memo title:string body:text -> 127.0.0.1:3000/memos
 
+## app_second
+
+- rails new app_second
+- cd app_second
+
 ## Setup
 
 - Use RubyInstaller
