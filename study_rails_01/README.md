@@ -1,5 +1,12 @@
 # study_rails_01
 
+## app_first
+
+- rails new app_first
+- cd app_first
+- rails server -> 127.0.0.1:3000
+- rails g scaffold Memo title:string body:text -> 127.0.0.1:3000/memos
+
 ## Setup
 
 - Use RubyInstaller
