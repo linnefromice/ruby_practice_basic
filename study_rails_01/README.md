@@ -11,6 +11,9 @@
 
 - rails new app_second
 - cd app_second
+- rails g model Post title:string body:text
+- rails db:migrate:reset
+- rails db:seed
 
 ## Setup
 
