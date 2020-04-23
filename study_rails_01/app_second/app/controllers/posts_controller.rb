@@ -13,6 +13,7 @@ class PostsController < ApplicationController
     end
 
     def new
+        @post = Post.new # create dummy object
     end
 
     def create
@@ -25,7 +26,8 @@ class PostsController < ApplicationController
             # redirect
             redirect_to posts_path
         else 
-            render plain: @post.errors.inspect
+            # render plain: @post.errors.inspect
+            render 'new'
         end
     end
 
