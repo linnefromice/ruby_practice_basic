@@ -6,4 +6,9 @@ class PostsController < ApplicationController
             puts "[INFO] Post = #{i.to_s}"
         end
     end
+
+    def show
+        @post = Post.find(params[:id])
+        puts "[INFO] Post = #{@post.to_s}"
+    end
 end
