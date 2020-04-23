@@ -11,4 +11,10 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         puts "[INFO] Post = #{@post.to_s}"
     end
+
+    def new
+    end
+
+    def create
+    end
 end

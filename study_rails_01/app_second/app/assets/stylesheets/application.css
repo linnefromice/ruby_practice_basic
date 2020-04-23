@@ -14,7 +14,23 @@
  *= require_self
  */
 
- .logo {
-     width: 400px;
-     height: 100px;
- }
+.logo {
+    width: 400px;
+    height: 100px;
+}
+
+.header-menu {
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+}
+
+input[type=text], textarea {
+    box-sizing: border-box;
+    width: 400px;
+    padding: 5px;
+}
+
+textarea {
+    height: 160px
+}
