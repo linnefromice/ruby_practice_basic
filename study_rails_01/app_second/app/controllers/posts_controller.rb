@@ -31,6 +31,11 @@ class PostsController < ApplicationController
         end
     end
 
+    def edit
+        @post = Post.find(params[:id])
+        puts "[INFO] Post = #{@post.to_s}"
+    end
+
     private
         def post_params
             params[:post].permit(:title, :body)

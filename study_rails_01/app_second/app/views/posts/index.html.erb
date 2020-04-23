@@ -5,7 +5,10 @@
 <ul>
 <% @posts.each do |post|%>
 <li>
-  <div><%= link_to post.title, post_path(post) %></div>
+  <div>
+    <%= link_to post.title, post_path(post) %>
+    <%= link_to '[Edit]', edit_post_path(post), class: 'command' %>
+  </div>
 </li>
 <% end %>
 </ul>

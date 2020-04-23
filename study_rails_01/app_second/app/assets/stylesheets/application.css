@@ -35,6 +35,10 @@ textarea {
     height: 160px
 }
 
+.command {
+    font-size: 12px;
+}
+
 .error {
     font-size: 12px;
     font-weight: bold;
