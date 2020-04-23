@@ -27,5 +27,6 @@
 
 ## Reference
 
+- [dotinstall - Ruby on Rails 5入門](https://dotinstall.com/lessons/basic_rails_v3)
 - [RubyInstallers for Windows](https://rubyinstaller.org/downloads/)
 - [Windows10 に Ruby on Railsを入れてみた。](https://qiita.com/sorabin/items/e423b410b0cbd103d114)
