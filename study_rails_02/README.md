@@ -1,5 +1,14 @@
 # study_rails_02
 
+## app_railbook
+
+### Command
+
+- rails new app_railbook
+- cd app_railbook
+- rails generate controller hello index
+- rails generate model book isbn:string title:string price:integer publish:string published:date cd:boolean
+
 ## Reference
 
 - [Railsガイド - Railsをはじめよう](https://railsguides.jp/getting_started.html)
