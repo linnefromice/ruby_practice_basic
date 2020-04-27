@@ -6,4 +6,8 @@ class HelloController < ApplicationController
   def view
     @msg = "Hello, hello/view"
   end
+
+  def list
+    @books = Book.all
+  end
 end
