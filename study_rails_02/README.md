@@ -18,6 +18,8 @@
 - initialize
   - rails destroy model book
   - rails db:drop
+- rails generate scaffold book isbn:string title:string price:integer publish:string published:date cd:boolean
+- rails db:migrate
 
 ## Reference
 
