@@ -13,6 +13,12 @@
 - rails db:migrate
 - rails db:fixtures:load FIXTURES=books
 
+#### Chapter3
+
+- initialize
+  - rails destroy model book
+  - rails db:drop
+
 ## Reference
 
 - [Railsガイド - Railsをはじめよう](https://railsguides.jp/getting_started.html)
