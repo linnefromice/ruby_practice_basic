@@ -8,6 +8,7 @@
 - cd app_railbook
 - rails generate controller hello index
 - rails generate model book isbn:string title:string price:integer publish:string published:date cd:boolean
+- rails db:migrate
 
 ## Reference
 
