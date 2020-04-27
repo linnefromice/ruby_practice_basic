@@ -1,5 +1,5 @@
 class HelloController < ApplicationController
   def index
-    render plain: 'Hello, World!'
+    @msg = 'Hello, World!'
   end
 end
