@@ -26,6 +26,9 @@
 ### Command
 
 - rails new app_toy
+- cd app_toy
+- rails generate scaffold User name:string email:string
+- rails db:migrate
 
 ## Reference
 
