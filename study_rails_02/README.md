@@ -21,7 +21,14 @@
 - rails generate scaffold book isbn:string title:string price:integer publish:string published:date cd:boolean
 - rails db:migrate
 
+## app_toy
+
+### Command
+
+- rails new app_toy
+
 ## Reference
 
 - [Railsガイド - Railsをはじめよう](https://railsguides.jp/getting_started.html)
 - [Ruby on Rails 4アプリケーションプログラミング](https://www.amazon.co.jp/dp/B00JZKX6DE)
+- [Ruby on Rails チュートリアル](https://railstutorial.jp/chapters/toy_app?version=5.1)
