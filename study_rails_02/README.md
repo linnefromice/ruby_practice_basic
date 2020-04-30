@@ -23,6 +23,8 @@
 
 ## app_toy
 
+- [Ruby on Rails チュートリアル - 2章](https://railstutorial.jp/chapters/toy_app?version=5.1)
+
 ### Command
 
 - rails new app_toy
@@ -32,8 +34,14 @@
 - rails generate scaffold Micropost content:text user_id:integer
 - rails db:migrate
 
+## app_sample
+
+- [Ruby on Rails チュートリアル - 3章](https://railstutorial.jp/chapters/static_pages?version=5.1#cha-static_pages)
+
+### Command
+
+
 ## Reference
 
 - [Railsガイド - Railsをはじめよう](https://railsguides.jp/getting_started.html)
 - [Ruby on Rails 4アプリケーションプログラミング](https://www.amazon.co.jp/dp/B00JZKX6DE)
-- [Ruby on Rails チュートリアル](https://railstutorial.jp/chapters/toy_app?version=5.1)
