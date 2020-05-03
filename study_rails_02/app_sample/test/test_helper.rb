@@ -4,7 +4,8 @@ require 'rails/test_help'
 
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors, with: :threads)
+  # parallelize(workers: :number_of_processors, with: :threads)
+  # -> https://stackoverflow.com/questions/33491772/rails-error-actionviewtemplateerror-permission-denied-sys-fail2-in-dev
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
