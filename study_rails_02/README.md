@@ -40,6 +40,11 @@
 
 ### Command
 
+- rails new app_sample
+- cd app_sample
+- rails generate controller StaticPages home help
+- rails generate integration_test site_layout
+- rails generate controller Users new
 
 ## Reference
 
