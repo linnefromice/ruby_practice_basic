@@ -45,6 +45,8 @@
 - rails generate controller StaticPages home help
 - rails generate integration_test site_layout
 - rails generate controller Users new
+- rails generate model User name:string email:string
+- rails db:migrate
 
 ## Reference
 
