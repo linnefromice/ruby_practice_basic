@@ -16,4 +16,16 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_template 'static_pages/help'
     assert_select "title", full_title("Help")
   end
+
+  test "layout about" do
+    get about_path
+    assert_template 'static_pages/about'
+    assert_select "title", full_title("About")
+  end
+
+  test "layout contact" do
+    get contact_path
+    assert_template 'static_pages/contact'
+    assert_select "title", full_title("Contact")
+  end
 end
