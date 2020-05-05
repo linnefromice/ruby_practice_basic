@@ -4,5 +4,6 @@ class UsersController < ApplicationController
     # debugger
   end
   def new
+    @user = User.new
   end
 end
