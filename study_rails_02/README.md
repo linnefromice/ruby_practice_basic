@@ -48,6 +48,7 @@
 - rails generate model User name:string email:string
 - rails db:migrate
 - rails db:migrate RAILS_ENV=test
+- rails generate migration add_index_to_users_email
 
 ## Reference
 
