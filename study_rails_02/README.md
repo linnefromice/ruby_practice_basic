@@ -49,9 +49,15 @@
 - rails db:migrate
 - rails db:migrate RAILS_ENV=test
 - rails generate migration add_index_to_users_email
+- rails generate integration_test users_signup
+
+User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
 ## Reference
 
 - [Railsガイド - Railsをはじめよう](https://railsguides.jp/getting_started.html)
 - [Ruby on Rails 4アプリケーションプログラミング](https://www.amazon.co.jp/dp/B00JZKX6DE)
 - [Rubular - a Ruby regular expression editor](https://rubular.com/)
+
+- [Qiita - $ rails db:migrate:reset できない　windows](https://qiita.com/Toshiki23/items/f366504844fd22ad87d9)
+- [Hatena Blog - ぞえの技術メモ](http://kt-zoe.hatenablog.com/)
