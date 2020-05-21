@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # TODO
     else
-      flash[:danger] = 'Invalid email/password conmbination'
+      flash.now[:danger] = 'Invalid email/password conmbination'
       render 'new'
     end
   end
