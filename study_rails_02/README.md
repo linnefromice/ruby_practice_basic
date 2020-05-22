@@ -51,6 +51,8 @@
 - rails generate migration add_index_to_users_email
 - rails generate integration_test users_signup
 - rails generate controller Sessions new
+- rails generate integration_test users_login
+- rails generate migration add_remember_digest_to_users remember_digest:string
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
