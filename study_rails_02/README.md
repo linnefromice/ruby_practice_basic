@@ -55,6 +55,7 @@
 - rails generate migration add_remember_digest_to_users remember_digest:string
 - rails generate migration add_admin_to_users admin:boolean
 - rails generate controller AccountActivations
+- rails generate migration add_activation_to_users activation_digest:string activated:boolean activated_at:datetime
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
