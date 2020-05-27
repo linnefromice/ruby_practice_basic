@@ -56,6 +56,7 @@
 - rails generate migration add_admin_to_users admin:boolean
 - rails generate controller AccountActivations
 - rails generate migration add_activation_to_users activation_digest:string activated:boolean activated_at:datetime
+- rails generate mailer UserMailer account_activation password_reset
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
