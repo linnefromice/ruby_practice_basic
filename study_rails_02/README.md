@@ -58,6 +58,8 @@
 - rails generate migration add_activation_to_users activation_digest:string activated:boolean activated_at:datetime
 - rails generate mailer UserMailer account_activation password_reset
 - rails generate controller PasswordResets new edit --no-test-framework
+- rails generate migration add_reset_to_users reset_digest:string reset_sent_at:datetime
+- rails generate integration_test password_resets
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
