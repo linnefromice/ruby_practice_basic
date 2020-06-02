@@ -60,6 +60,11 @@
 - rails generate controller PasswordResets new edit --no-test-framework
 - rails generate migration add_reset_to_users reset_digest:string reset_sent_at:datetime
 - rails generate integration_test password_resets
+- rails generate model Micropost content:text user:references
+- rails generate controller Microposts
+- rails generate integration_test microposts_interface
+- rails generate generate uploader Picture
+- rails generate migration add_picture_to_microposts picture:string
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
