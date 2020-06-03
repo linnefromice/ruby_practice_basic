@@ -66,6 +66,7 @@
 - rails generate generate uploader Picture
 - rails generate migration add_picture_to_microposts picture:string
 - rails generate model Relationship follower_id:integer followed_id:integer
+- rails generate integration_test following
 
 User.create(name: "Michael Hartl", email: "mhartl@example.com", password: "foobar", password_confirmation: "foobar")
 
