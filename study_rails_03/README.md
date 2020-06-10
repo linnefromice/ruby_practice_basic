@@ -11,3 +11,5 @@
 - rails generate rspec:install
 - rails g model Todo title:string created_by:string
 - rails g model Item name:string done:boolean todo:references
+- rails g controller Todos
+- rails g controller Items
