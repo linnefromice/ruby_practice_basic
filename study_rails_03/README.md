@@ -9,3 +9,4 @@
 - rails new todos-api --api -T
 - cd todos-api
 - rails generate rspec:install
+- rails g model Todo title:string created_by:string
