@@ -3,6 +3,8 @@
 ## todos-api
 
 - [SCOTCH - Build a RESTful JSON API With Rails 5 - Part One](https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-one)
+- [SCOTCH - Build a RESTful JSON API With Rails 5 - Part Two](https://scotch.io/tutorials/build-a-restful-json-api-with-rails-5-part-two)
+
 
 ### command
 
