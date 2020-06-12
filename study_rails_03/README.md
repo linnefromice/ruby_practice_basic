@@ -8,6 +8,8 @@
 
 ### command
 
+#### part1
+
 - rails new todos-api --api -T
 - cd todos-api
 - rails generate rspec:install
@@ -15,3 +17,7 @@
 - rails g model Item name:string done:boolean todo:references
 - rails g controller Todos
 - rails g controller Items
+
+#### part2
+
+- rails g model User name:string email:string password_digest:string
