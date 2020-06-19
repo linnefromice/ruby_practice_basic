@@ -127,4 +127,21 @@ end
 
 post_three = PostThree.new("Title_Three", "Content_Three", "Author_Three", "Publish_Date_Three")
 post_three.lamdba_inspect(lamdba_inspect_attr_two)
-post_three.lamdba_inspect(lamdba_inspect_attr_three)
+# post_three.lamdba_inspect(lamdba_inspect_attr_three)
+
+puts "## proc & lamdba"
+def proc_return
+    Proc.new do
+        return "Inside proc !!"
+    end.call
+    return "Inside proc_return !!!"
+end
+def lambda_return
+    lambda do
+        return "Inside lambda_inspect!!!"
+    end.call
+    return "Inside lambda_return !!!"
+end
+
+puts proc_return
+puts lambda_return
