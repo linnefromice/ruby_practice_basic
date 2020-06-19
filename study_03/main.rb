@@ -81,3 +81,50 @@ proc_inspect = Proc.new do |attribute, value|
 end
 post_two = PostTwo.new("Title", "Content", "Author", "Publish Date")
 post_two.proc_inspect(proc_inspect)
+
+puts "# lambda"
+
+class PostThree
+    attr_accessor :title, :content, :author, :publish_date
+
+    def initialize(title, content, author, publish_date)
+        @title = title
+        @content = content
+        @author = author
+        @publish_date = publish_date
+    end
+
+    def block_inspect(&block)
+        self.instance_variables.each do |instance_variable|
+            stringified_instance_varible_name = instance_variable.to_s.sub('@', '')
+            # yield(stringified_instance_varible_name, self.instance_variable_get(instance_variable)) if block_given?
+            block.call(stringified_instance_varible_name, self.instance_variable_get(instance_variable)) if block_given?
+        end
+    end
+
+    def proc_inspect(block)
+        self.instance_variables.each do |instance_variable|
+            stringified_instance_varible_name = instance_variable.to_s.sub('@', '')
+            block.call(stringified_instance_varible_name, self.instance_variable_get(instance_variable))
+        end
+    end
+
+    def lamdba_inspect(lambda)
+        self.instance_variables.each do |instance_variable|
+            stringified_instance_varible_name = instance_variable.to_s.sub('@', '')
+            lambda.call(stringified_instance_varible_name, self.instance_variable_get(instance_variable))
+        end
+    end
+end
+
+lamdba_inspect_attr_two = lambda do |attribute, value|
+    puts "#{attribute} = #{value}"
+end
+lamdba_inspect_attr_three = lambda do |attribute, value, answer_to_life_and_universe|
+    puts "#{attribute} = #{value}"
+    puts "Answer to life and universe is #{answer_to_life_and_universe.class}"
+end
+
+post_three = PostThree.new("Title_Three", "Content_Three", "Author_Three", "Publish_Date_Three")
+post_three.lamdba_inspect(lamdba_inspect_attr_two)
+post_three.lamdba_inspect(lamdba_inspect_attr_three)
