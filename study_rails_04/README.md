@@ -6,6 +6,10 @@
 - チュートリアル実戦用リポジトリ
   - 「Everyday Rails - RSpecによるRailsテスト入門」
 
+### command
+
+- bundle exec rails generate rspec:install
+
 ### Reference
 
 - [github.com - everydayrails/everydayrails-rspec-2017](https://github.com/everydayrails/everydayrails-rspec-2017/tree/master)
