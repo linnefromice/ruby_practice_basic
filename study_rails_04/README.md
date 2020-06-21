@@ -12,6 +12,7 @@
 - bundle exec rails generate rspec:model user
 - bundle exec rails generate rspec:model project
 - bundle exec rails generate rspec:model note
+- bundle exec rails generate factory_bot:model user
 
 ### Reference
 
