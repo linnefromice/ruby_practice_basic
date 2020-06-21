@@ -9,6 +9,7 @@
 ### command
 
 - bundle exec rails generate rspec:install
+- bundle exec rails generate rspec:model user
 
 ### Reference
 
