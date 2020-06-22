@@ -16,6 +16,7 @@
 - bundle exec rails generate factory_bot:model note
 - bundle exec rails generate factory_bot:model project
 - bundle exec rails generate rspec:controller home
+- bundle exec rails generate rspec:controller projects
 
 ### Reference
 
