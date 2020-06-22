@@ -22,4 +22,7 @@
 
 - [github.com - everydayrails/everydayrails-rspec-2017](https://github.com/everydayrails/everydayrails-rspec-2017/tree/master)
 - [leanpub.com - everydayrailsrspec-jp](https://leanpub.com/everydayrailsrspec-jp)
-- [Qiita - 【Ruby on Rails】リンクパスの指定方法について【プログラミング学習91日目】](https://qiita.com/fuku_tech/items/8be0a2a889839ca47ae0)
+- [Rails テスティングガイド](https://railsguides.jp/testing.html)
+- path
+  - [Qiita - 【Ruby on Rails】リンクパスの指定方法について【プログラミング学習91日目】](https://qiita.com/fuku_tech/items/8be0a2a889839ca47ae0)
+  - [Qiita - 【Rails】APIテストの書き方](https://qiita.com/k-penguin-sato/items/defdb828bd54729272ad)
