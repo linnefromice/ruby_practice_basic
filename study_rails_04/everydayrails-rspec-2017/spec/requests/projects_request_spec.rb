@@ -2,22 +2,41 @@ require 'rails_helper'
 
 RSpec.describe "Projects", type: :request do
   describe "#index" do
-    before do
-      @user = FactoryBot.create(:user)
+
+    # 認証済みのユーザーとして
+    context "as an authenticated user" do
+      before do
+        @user = FactoryBot.create(:user)
+      end
+
+      # 正常にレスポンスを返すこと
+      it "responds successfully" do
+        sign_in @user
+        get projects_path
+        expect(response).to be_successful
+      end
+
+      # 200レスポンスを返すこと
+      it "returns a 200 response" do
+        sign_in @user
+        get projects_path
+        expect(response).to have_http_status "200"
+      end
     end
 
-    # 正常にレスポンスを返すこと
-    it "responds successfully" do
-      sign_in @user
-      get projects_path
-      expect(response).to be_successful
-    end
+    # ゲストとして
+    context "as a guest" do
+      # 302 レスポンスを返すこと
+      it "returns a 302 response" do
+        get projects_path
+        expect(response).to have_http_status "302"
+      end
 
-    # 200レスポンスを返すこと
-    it "returns a 200 response" do
-      sign_in @user
-      get projects_path
-      expect(response).to have_http_status "200"
+      # サインイン画面にリダイレクトすること
+      it "redirects to the sign-in page" do
+        get projects_path
+        expect(response).to redirect_to "/users/sign_in"
+      end
     end
   end
 end
