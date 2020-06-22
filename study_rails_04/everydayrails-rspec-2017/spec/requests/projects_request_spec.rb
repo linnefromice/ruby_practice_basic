@@ -212,5 +212,31 @@ RSpec.describe "Projects", type: :request do
         expect(response).to redirect_to root_path
       end
     end
+
+    # ゲストとして
+    context "as a guest" do
+      before do
+        @project = FactoryBot.create(:project)
+      end
+
+      # 302レスポンスを返すこと
+      it "returns a 302 response" do
+        delete "/projects/#{@project.id}", params: { id: @project.id }
+        expect(response).to have_http_status "302"
+      end
+
+      # サインイン画面にリダイレクトされること
+      it "redirects to the sign-in page" do
+        delete "/projects/#{@project.id}", params: { id: @project.id }
+        expect(response).to redirect_to "/users/sign_in"
+      end
+
+      # プロジェクトを削除できないこと
+      it "does not delete the project" do
+        expect {
+          delete "/projects/#{@project.id}", params: { id: @project.id }
+        }.to_not change(Project, :count)
+      end
+    end
   end
 end
