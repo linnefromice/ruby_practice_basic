@@ -8,6 +8,17 @@
 
 ### command
 
+- bin/rails g rspec:model user
+- bin/rails g rspec:model project
+- bin/rails g rspec:model note
+- bin/rails g factory_bot:model user
+- bin/rails g factory_bot:model project
+- bin/rails g factory_bot:model note
+- bin/rails g rspec:controller home
+- bin/rails g rspec:controller projects
+- bin/rails g rspec:controller tasks
+- bin/rails g rspec:feature projects
+
 
 ### Reference
 
