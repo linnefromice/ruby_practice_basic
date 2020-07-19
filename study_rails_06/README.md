@@ -20,6 +20,9 @@
 - bundle exec rails plugin new blorgh --mountable
 - cd blorgh
 - bundle install --path vendor/bundle
+
+#### Create model
+
 - bin/rails generate scaffold article title:string text:text
 - bin/rails db:migrate
 - cd test/dummy
@@ -28,6 +31,17 @@
 ```text
 http://localhost:3000/blorgh/articles
 ```
+↓ add `root to: "articles#index"` line in `config/routes.rb`
+```text
+http://localhost:3000/blorgh
+```
+
+#### Create another model
+
+- cd ../..
+- bin/rails generate model Comment article_id:integer text:text
+- bin/rails db:migrate
+- bin/rails g controller comments
 
 #### Log
 
