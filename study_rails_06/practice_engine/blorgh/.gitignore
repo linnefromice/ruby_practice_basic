@@ -7,3 +7,8 @@ test/dummy/db/*.sqlite3-*
 test/dummy/log/*.log
 test/dummy/storage/
 test/dummy/tmp/
+
+# Customize
+/vendor/bundle/*
+!/vendor/bundle/
+!/vendor/.keep

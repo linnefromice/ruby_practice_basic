@@ -18,6 +18,16 @@
 ### Create Engine
 
 - bundle exec rails plugin new blorgh --mountable
+- cd blorgh
+- bundle install --path vendor/bundle
+- bin/rails generate scaffold article title:string text:text
+- bin/rails db:migrate
+- cd test/dummy
+- rails server
+
+```text
+http://localhost:3000/blorgh/articles
+```
 
 #### Log
 
