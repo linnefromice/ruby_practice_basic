@@ -15,7 +15,7 @@
 - bundle exec rails webpacker:install
 - bundle exec rails s
 
-### Create Engine
+#### Create Engine
 
 - bundle exec rails plugin new blorgh --mountable
 - cd blorgh
@@ -24,27 +24,8 @@
 #### Create model
 
 - bin/rails generate scaffold article title:string text:text
-- bin/rails db:migrate
-- cd test/dummy
-- rails server
 
-```text
-http://localhost:3000/blorgh/articles
-```
-↓ add `root to: "articles#index"` line in `config/routes.rb`
-```text
-http://localhost:3000/blorgh
-```
-
-#### Create another model
-
-- cd ../..
-- bin/rails generate model Comment article_id:integer text:text
-- bin/rails db:migrate
-- bin/rails g controller comments
-
-#### Log
-
+##### Log
 ```text
 haruyama.arata@mf-1021-mm01 practice_engine % bundle exec rails plugin new blorgh --mountable
       create  
@@ -77,7 +58,59 @@ haruyama.arata@mf-1021-mm01 practice_engine % bundle exec rails plugin new blorg
       create  test/integration/navigation_test.rb
   vendor_app  test/dummy
       append  /Users/haruyama.arata/repository/github.com/linnefromice/ruby_practice_basic/study_rails_06/practice_engine/Gemfile
+```
 
+- bin/rails db:migrate
+- cd test/dummy
+- rails server
+
+```text
+http://localhost:3000/blorgh/articles
+```
+↓ add `root to: "articles#index"` line in `config/routes.rb`
+```text
+http://localhost:3000/blorgh
+```
+
+#### Create another model
+
+- cd ../..
+- bin/rails generate model Comment article_id:integer text:text
+- bin/rails db:migrate
+- bin/rails g controller comments
+
+#### Engineをアプリケーションに適用
+
+- アプリケーション側の設定ファイルの追記
+  - Gemfile
+    - 下記にように、gemとしてengineを追加する
+    - `gem 'blorgh', path: 'engines/blorgh'`
+  - config/routes.rb
+    - `mount Blorgh::Engine, at: "/blog"`
+- Migrationファイルのコピー
+  - bin/rails blorgh:install:migrations
+  - (複数のEngineの場合は、bin/rails railties:install:migrations)
+- bin/rails db:migrate SCOPE=blorgh
+
+#### アプリケーションのクラスをEngineで使用する
+
+- bin/rails g model user name:string
+- bin/rails db:migrate
+- Articleモデルと関連づけをする
+- cd blorgh
+- bin/rails g migration add_author_id_to_blorgh_articles author_id:integer
+- cd ..
+- bin/rails blorgh:install:migrations
+- bin/rails db:migrate
+
+## エラーシューティング
+
+- Engine側のリソースにアクセスした際に、Sprockets::Rails::Helper::AssetNotPrecompiled が出る
+  - https://qiita.com/sanriyochan/items/99d63e8a8691eb29fa4c
+  - config/initializers/assets.rb を追加する
+    - 本体側のリソースとengineのリソースも記載する
+```ruby
+Rails.application.config.assets.precompile += %w( application.css blorgh/application.css )
 ```
 
 ## Reference
