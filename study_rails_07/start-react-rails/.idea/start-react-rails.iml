@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/tmp/cache" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/bundle" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -1026,33 +1027,6 @@
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/web-console-4.0.4/lib" />
         </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="webpacker (vbundled(5.1.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/package" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/gemfiles" />
-        </CLASSES>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/package" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/gemfiles" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/docs" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/test" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/package" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/webpacker-5.1.1/gemfiles" />
-        </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
