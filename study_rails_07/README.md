@@ -1,8 +1,10 @@
 # study_rails_07
 
-## Process
+## rails5.2-react-webpacker
 
-### Initialize
+### Process
+
+#### Initialize
 
 - mkdir rails5.2-react-webpacker
 - cd rails5.2-react-webpacker
@@ -18,7 +20,7 @@
   - bin/rails s
   - bin/webpacker-dev-server
 
-### Add bootstrap
+#### Add bootstrap
 
 - yarn add bootstrap jquery popper.js
   - bootstrap(4.5) は jquery, popper.js に依存している
@@ -27,7 +29,7 @@
 - 色々追記
   - 参考 ... https://gist.github.com/yalab/cad361056bae02a5f45d1ace7f1d86ef
 
-### Add react
+#### Add react
 
 - yarn add webpacker-react
 - app/javascript/packs/application.js に下記追記
@@ -36,7 +38,11 @@
   - `import 'bootstrap'`
   - `import WebpackerReact from 'webpacker-react'`
 
-## Reference
+#### Create App
+
+- bin/rails g controller todos
+
+### Reference
 
 - Tutorial
   - [Rails5.2+React+WebpackerでモダンなWebフロントエンド開発を1時間でキャッチアップしよう - フリーランスのエンジニア道](https://free-engineer.hatenablog.com/entry/2018/04/26/165941)
@@ -44,3 +50,27 @@
   - [新規Railsプロジェクト作成時のコマンド - Qiita](https://qiita.com/k_senbei/items/02c4bacd5bb862535d9d)
   - [【Rails】Gemfileのバージョン指定の書き方 - Yohei Isokawa](https://blog.yuhiisk.com/archive/2017/04/24/specify-the-version-of-gemfile.html)
   - [薄いRailsプロジェクトを rails new する - Qiita](https://qiita.com/shinkuFencer/items/e6b4e24a92f7b34e9f24)
+
+## start-react-rails
+
+### Process
+
+#### Initialize
+
+- mkdir start-react-rails
+- cd start-react-rails
+- bundle init
+- Gemfileの`rails`をコメントアウトし、バージョン指定 & gem追加
+  - `gem "rails", "~> 6.0.0"`
+  - `gem 'webpacker'`
+  - `gem 'react-rails'`
+- bundle install --path vendor/bundle
+- bundle exec rails new . -S -T --skip-turbolinks
+- gibo dump Rails VisualStudioCode >> .gitignore
+- bin/rails webpacker:install
+- bin/rails webpacker:install:react
+- bin/rails generate react:install
+
+### Reference
+
+- [reactjs/react-rails: Integrate React.js with Rails views and controllers, the asset pipeline, or webpacker.](https://github.com/reactjs/react-rails)
