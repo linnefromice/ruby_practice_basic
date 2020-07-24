@@ -14,6 +14,27 @@
   - `bundle exec rails new -h` で、オプション確認
 - gibo dump Rails VisualStudioCode >> .gitignore
   - gibo で .gitignore を自動生成する
+- Launch
+  - bin/rails s
+  - bin/webpacker-dev-server
+
+### Add bootstrap
+
+- yarn add bootstrap jquery popper.js
+  - bootstrap(4.5) は jquery, popper.js に依存している
+    - https://getbootstrap.com/docs/4.5/getting-started/webpack/#importing-javascript
+  - popper.js ... 簡単にツールチップ的なものを実装できるJSライブラリ
+- 色々追記
+  - 参考 ... https://gist.github.com/yalab/cad361056bae02a5f45d1ace7f1d86ef
+
+### Add react
+
+- yarn add webpacker-react
+- app/javascript/packs/application.js に下記追記
+  - `import 'babel-polyfill'`
+  - `import 'stylesheets/application'`
+  - `import 'bootstrap'`
+  - `import WebpackerReact from 'webpacker-react'`
 
 ## Reference
 
