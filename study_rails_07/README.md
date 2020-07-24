@@ -69,7 +69,17 @@
 - gibo dump Rails VisualStudioCode >> .gitignore
 - bin/rails webpacker:install
 - bin/rails webpacker:install:react
+- (Gemfile に "react-rails" があることを確認 & bundle install)
 - bin/rails generate react:install
+
+#### Create react component
+
+- bin/rails g controller todos
+- bin/rails g react:component todos/index todos:array
+  - add `<%= react_component('todos/index', todos: @todos) %>` in `app/views/todos/index.html.erb`
+- Launch
+  - bin/rails s
+  - bin/webpack-dev-server <- 必要？なくても描画修正されるけど...
 
 ### Reference
 
