@@ -15,9 +15,14 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-import 'babel-polyfill'
+import '@babel/polyfill'
 import 'stylesheets/application'
 import 'bootstrap'
 import WebpackerReact from 'webpacker-react'
+import Todos from './todos'
+
+WebpackerReact.setup({
+    Todos
+})
 
 console.log('Hello World from Webpacker')
