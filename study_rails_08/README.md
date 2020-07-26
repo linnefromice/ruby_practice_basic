@@ -8,8 +8,11 @@
 
 ### Reference
 
-- [Rails による API 専用アプリケーション - Railsガイド](https://railsguides.jp/api_app.html)
-- [Rails「ユーザーのモデルを作成する」 - Qiita](https://qiita.com/macotok/items/a17a4b0d22db4e885678)
+- rails
+  - [Rails による API 専用アプリケーション - Railsガイド](https://railsguides.jp/api_app.html)
+  - [Rails「ユーザーのモデルを作成する」 - Qiita](https://qiita.com/macotok/items/a17a4b0d22db4e885678)
+- react
+  - [【React+TypeScript】Functional Componentの定義方法 - Qiita](https://qiita.com/otanu/items/434cd326754ac989fcbe)
 
 ### rails-react-server
 
@@ -39,3 +42,11 @@ bin/rails g controller tweets
   - "index"ではなく"show"を実装
 - 初期データ作成
   - `db/seeds.rb`
+
+### rails-react-client
+
+```text
+npx create-react-app rails-react-client --template typescript
+yarn add axios
+yarn add react-bootstrap bootstrap
+```
