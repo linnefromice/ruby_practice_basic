@@ -17,7 +17,7 @@ const ViewTweet: React.FC<TweetProps> = props => {
             {element.sentence}
           </Card.Text>
           <Button variant="primary">MODIFY</Button>
-          <Button variant="warn">DELETE</Button>
+          <Button variant="warning">DELETE</Button>
         </Card.Body>
         <Card.Footer className="text-muted">{element.created_at}</Card.Footer>
       </Card>
