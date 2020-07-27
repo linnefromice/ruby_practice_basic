@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import TweetInterface from '../model/tweet_interface'
+import TweetsContainer from './tweets/tweets_container'
 
 const MainContainer: React.FC = () => {
-  const [tweets, getTweets] = useState([])
+  const [tweets, getTweets] = useState<TweetInterface[]>([])
   
   useEffect(() => {
     axios.get('http://localhost:3001/tweets')
@@ -19,16 +21,9 @@ const MainContainer: React.FC = () => {
     )
   } else {
     return (
-      <div className="app-main">
-        <ul>
-          {tweets.map((element, index) => {
-            const obj = JSON.stringify(element)
-            return (
-              <li key={index}>{obj}</li>
-            )
-          })}
-        </ul>
-      </div>
+      <TweetsContainer tweets={tweets}>
+        <div>TWEETS</div>
+      </TweetsContainer>
     );
   }
 }
