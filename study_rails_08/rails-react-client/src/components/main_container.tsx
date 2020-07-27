@@ -21,9 +21,7 @@ const MainContainer: React.FC = () => {
     )
   } else {
     return (
-      <TweetsContainer tweets={tweets}>
-        <div>TWEETS</div>
-      </TweetsContainer>
+      <TweetsContainer tweets={tweets}/>
     );
   }
 }
