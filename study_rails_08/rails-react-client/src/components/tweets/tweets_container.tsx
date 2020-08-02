@@ -2,6 +2,8 @@ import React from 'react'
 import TweetInterface from '../../model/tweet_interface'
 import ViewTweet from './view_tweet'
 import CreateForm from './create_form'
+import UserInformation from '../common/user_information'
+import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 
@@ -12,17 +14,27 @@ type TweetsProps = {
 const TweetsContainer: React.FC<TweetsProps> = props => {
     if (props.tweets.length === 0) {
       return (
-        <div>
+        <Container fluid>
           <Row>
-            <CreateForm />
+            <Col>
+              <CreateForm />
+            </Col>
+            <Col>
+              <UserInformation />
+            </Col>
           </Row>
-        </div>
+        </Container>
       )
     } else {
       return (
-        <div>
+        <Container fluid>
           <Row>
-            <CreateForm />
+            <Col>
+              <CreateForm />
+            </Col>
+            <Col>
+              <UserInformation />
+            </Col>
           </Row>
           <Row xs={1} md={2}>
             {props.tweets.map((element, index) => {
@@ -33,7 +45,7 @@ const TweetsContainer: React.FC<TweetsProps> = props => {
               )
             })}
           </Row>
-        </div>
+        </Container>
       );
     }
 }
