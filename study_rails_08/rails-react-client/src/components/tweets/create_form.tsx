@@ -1,9 +1,12 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { UserContext } from '../../global/contexts'
+
 import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 const CreateForm: React.FC = () => {
+    const { username } = useContext(UserContext)
     const [sentence, setSentence] = useState("")
 
     function onChangeSentence(e: React.ChangeEvent<HTMLInputElement>) {
@@ -11,11 +14,13 @@ const CreateForm: React.FC = () => {
     }
 
     function createTweet() {
+        const user_name = (!username) ? "unknown" : username
+
         if (sentence === "") return
         axios.post('http://localhost:3001/tweets',
             {
                 sentence: sentence,
-                user_name: "unknown"
+                user_name: user_name
             }
         )
         .catch((error) => {

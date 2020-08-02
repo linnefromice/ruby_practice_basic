@@ -1,19 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../../global/contexts'
+
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 
 const UserInformation: React.FC = () => {
-    const [isLogin, setIsLogin] = useState(false)
-    const [username, setUsername] = useState("")
+    const {username, setUsername} = useContext(UserContext)
+    const [isLogin, setIsLogin] = useState<boolean>(false)
+    const [formValue, setFormValue] = useState<string>("")
 
-    function onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
-        setUsername(e.target.value)
+    function onChangeFormValue(e: React.ChangeEvent<HTMLInputElement>) {
+        setFormValue(e.target.value)
+    }
+
+    function login() {
+        setIsLogin(true)
+        setUsername(formValue)
     }
 
     function logout() {
-        setUsername("")
+        setFormValue("")
         setIsLogin(false)
+        setUsername("")
     }
 
     if (!isLogin) {
@@ -22,13 +31,13 @@ const UserInformation: React.FC = () => {
                 <Form.Control
                     type="text"
                     placeholder="Input your username"
-                    value={username}
-                    onChange={onChangeUsername}
+                    value={formValue}
+                    onChange={onChangeFormValue}
                 />
                 <InputGroup.Append>
                     <Button
                         variant="primary"
-                        onClick={() => setIsLogin(true)}
+                        onClick={login}
                     >LOGIN</Button>
                 </InputGroup.Append>
           </InputGroup>
@@ -38,12 +47,11 @@ const UserInformation: React.FC = () => {
             <InputGroup>
                 <Form.Control
                     readOnly
-                    placeholder="USERNAME"                
+                    value={username}            
                 />
                 <InputGroup.Append>
                     <Button
                         variant="warning"
-                        value={username}
                         onClick={logout}
                     >LOGOUT</Button>
                 </InputGroup.Append>
