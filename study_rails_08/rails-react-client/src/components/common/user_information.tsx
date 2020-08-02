@@ -7,11 +7,23 @@ const UserInformation: React.FC = () => {
     const [isLogin, setIsLogin] = useState(false)
     const [username, setUsername] = useState("")
 
+    function onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
+        setUsername(e.target.value)
+    }
+
+    function logout() {
+        setUsername("")
+        setIsLogin(false)
+    }
+
     if (!isLogin) {
         return (
             <InputGroup>
                 <Form.Control
+                    type="text"
                     placeholder="Input your username"
+                    value={username}
+                    onChange={onChangeUsername}
                 />
                 <InputGroup.Append>
                     <Button
@@ -31,7 +43,8 @@ const UserInformation: React.FC = () => {
                 <InputGroup.Append>
                     <Button
                         variant="warning"
-                        onClick={() => setIsLogin(false)}
+                        value={username}
+                        onClick={logout}
                     >LOGOUT</Button>
                 </InputGroup.Append>
           </InputGroup>
