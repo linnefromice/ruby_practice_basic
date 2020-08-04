@@ -13,6 +13,7 @@
 
 ### モデル設計
 
+TODO
 
 ### 技術選定
 
@@ -50,3 +51,4 @@ bin/rails g model Tweet sentence:string user:references
 
 - [Rails のモデル（フォーム）でパスワードを暗号化して保存する方法 - Qiita](https://qiita.com/ryosuketter/items/805452b7e6bf9637cb57)
 - [ActiveRecordで1対他の関連付けマイグレーションを作成する - Qiita](https://qiita.com/yukihigasi/items/467b68f7f60463202a6e)
+- [Rails5 APIモードでつくるかんたんなトークンベース認証 - 大草原](https://dev.m6a.jp/entry/2018/11/14/162259)
