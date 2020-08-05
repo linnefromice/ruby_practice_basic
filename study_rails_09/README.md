@@ -49,6 +49,19 @@ bin/rails generate controller Tweets
 bin/rails db:seed
 ```
 
+### tweet-client
+
+- initializing
+
+```text
+npx create-react-app tweet-client --template typescript
+cd tweet-client
+yarn add axios
+yarn add react-router-dom
+yarn add styled-components
+gibo dump Node VisualStudioCode >> .gitignore
+```
+
 ## 参考
 
 - [Rails のモデル（フォーム）でパスワードを暗号化して保存する方法 - Qiita](https://qiita.com/ryosuketter/items/805452b7e6bf9637cb57)
