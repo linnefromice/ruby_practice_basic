@@ -36,7 +36,7 @@ bundle exec rails new . --api
 gibo dump Rails JetBrains >> .gitignore
 ```
 
-- create models
+- create models / controller
 
 ```text
 bin/rails g model User name:string email:string password_digest:string
@@ -45,6 +45,8 @@ bin/rails g model Tweet sentence:string user:references
 # bin/rails console
 ## User.new(name: "admin", email: "admin@example.com", password: "password").save
 ### CONFIRM -> User.first.authenticate("password")
+bin/rails generate controller Tweets
+bin/rails db:seed
 ```
 
 ## 参考
