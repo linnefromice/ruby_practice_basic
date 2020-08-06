@@ -75,6 +75,7 @@ yarn add axios
 yarn add react-router-dom
 yarn add styled-components
 yarn add @types/styled-components
+yarn add @types/react-router-dom
 gibo dump Node VisualStudioCode >> .gitignore
 ```
 

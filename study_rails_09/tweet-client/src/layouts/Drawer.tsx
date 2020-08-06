@@ -39,11 +39,11 @@ const Drawer = () => {
             </Margin>
             <Margin>
                 <Buttons>
-                    <LinkButton label="Top"/>
-                    <LinkButton label="VIDEO"/>
-                    <LinkButton label="NEWS"/>
-                    <LinkButton label="MUSIC"/>
-                    <LinkButton label="MORE"/>
+                    <LinkButton label="Top" link_to="/"/>
+                    <LinkButton label="VIDEO" link_to="/video"/>
+                    <LinkButton label="NEWS" link_to="/news"/>
+                    <LinkButton label="MUSIC" link_to="/music"/>
+                    <LinkButton label="MORE" link_to="/more"/>
                 </Buttons>
             </Margin>
             <Margin>

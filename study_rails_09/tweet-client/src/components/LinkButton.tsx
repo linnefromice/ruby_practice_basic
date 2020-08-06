@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import { Link } from "react-router-dom";
 
 const Circle = styled.div`
     height: 3vw;
@@ -19,13 +19,16 @@ const Label = styled.span`
 
 interface Prop {
     label: string
+    link_to: string
 }
 
 const LinkButton = (prop:Prop) => {
     return (
-        <Circle>
-            <Label>{prop.label}</Label>
-        </Circle>
+        <Link to={prop.link_to}>
+            <Circle>
+                <Label>{prop.label}</Label>
+            </Circle>
+        </Link>
     )
 }
 

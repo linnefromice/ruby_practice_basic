@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 import Drawer from './layouts/Drawer';
+
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,17 +26,40 @@ const MainContainer = styled.div`
   color: black;
 `;
 
+const Main = () => {
+  return (
+    <Switch>
+      <Route exact path="/home">
+        <p>HOME SCREEN</p>
+      </Route>
+      <Route path="/video">
+        <p>VIDEO SCREEN</p>
+      </Route>
+      <Route path="/news">
+        <p>NEWS SCREEN</p>
+      </Route>
+      <Route path="/music">
+        <p>MUSIC SCREEN</p>
+      </Route>
+      <Route path="/more">
+        <p>MORE SCREEN</p>
+      </Route>
+    </Switch>
+  )
+};
 
 function App() {
   return (
-    <Wrapper>
-      <DrawerWrapper>
-        <Drawer />
-      </DrawerWrapper>
-      <MainContainer>
-        Right
-      </MainContainer>
-    </Wrapper>
+    <Router>
+      <Wrapper>
+        <DrawerWrapper>
+          <Drawer />
+        </DrawerWrapper>
+        <MainContainer>
+          <Main/>
+        </MainContainer>
+      </Wrapper>
+    </Router>
   );
 }
 
