@@ -1,19 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import Drawer from './layouts/Drawer';
 
 const Wrapper = styled.div`
   display: flex;
+  width: 100vw;
 `;
 
-const LeftContainer = styled.div`
+const DrawerWrapper = styled.div`
   height: 100vh;
-  width: 30vw;
+  width: 15%;
   background-color: black;
   color: white;
 `;
-const RightContainer = styled.div`
+const MainContainer = styled.div`
   height: 100vh;
-  width: 70vw;
+  width: 85%;
   background-color: white;
   color: black;
 `;
@@ -22,12 +24,12 @@ const RightContainer = styled.div`
 function App() {
   return (
     <Wrapper>
-      <LeftContainer>
-        Left
-      </LeftContainer>
-      <RightContainer>
+      <DrawerWrapper>
+        <Drawer />
+      </DrawerWrapper>
+      <MainContainer>
         Right
-      </RightContainer>
+      </MainContainer>
     </Wrapper>
   );
 }

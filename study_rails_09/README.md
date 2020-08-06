@@ -49,6 +49,21 @@ bin/rails generate controller Tweets
 bin/rails db:seed
 ```
 
+- add test framework (rspec)
+
+```text
+# Gemfileを追記
+group :development, :test do
+  ...
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  ...
+end
+
+bundle install
+bin/rails generate rspec:install
+```
+
 ### tweet-client
 
 - initializing
@@ -59,6 +74,7 @@ cd tweet-client
 yarn add axios
 yarn add react-router-dom
 yarn add styled-components
+yarn add @types/styled-components
 gibo dump Node VisualStudioCode >> .gitignore
 ```
 
@@ -67,3 +83,4 @@ gibo dump Node VisualStudioCode >> .gitignore
 - [Rails のモデル（フォーム）でパスワードを暗号化して保存する方法 - Qiita](https://qiita.com/ryosuketter/items/805452b7e6bf9637cb57)
 - [ActiveRecordで1対他の関連付けマイグレーションを作成する - Qiita](https://qiita.com/yukihigasi/items/467b68f7f60463202a6e)
 - [Rails5 APIモードでつくるかんたんなトークンベース認証 - 大草原](https://dev.m6a.jp/entry/2018/11/14/162259)
+- [RailsアプリへのRspecとFactory_botの導入手順 - Qiita](https://qiita.com/Ushinji/items/522ed01c9c14b680222c)
