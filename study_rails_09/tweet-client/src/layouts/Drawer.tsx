@@ -7,13 +7,6 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-const Buttons = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
 const Margin = styled.div`
     margin: 2vh 0;
 `;
@@ -30,6 +23,30 @@ const SubTitle = styled.div`
     color: white;
 `;
 
+const Buttons = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
+interface Prop {
+    label: string
+    link_to: string
+}
+
+const MarginLinkButton = (prop: Prop) => {
+    const _marginContainer = styled.div`
+        margin: 0.5vh 0;
+    `;
+
+    return (
+        <_marginContainer>
+            <LinkButton label={prop.label} link_to={prop.link_to}/>
+        </_marginContainer>
+    )
+}
+
 const Drawer = () => {
     return (
         <Wrapper>
@@ -39,11 +56,11 @@ const Drawer = () => {
             </Margin>
             <Margin>
                 <Buttons>
-                    <LinkButton label="Top" link_to="/"/>
-                    <LinkButton label="VIDEO" link_to="/video"/>
-                    <LinkButton label="NEWS" link_to="/news"/>
-                    <LinkButton label="MUSIC" link_to="/music"/>
-                    <LinkButton label="MORE" link_to="/more"/>
+                    <MarginLinkButton label="Top" link_to="/"/>
+                    <MarginLinkButton label="VIDEO" link_to="/video"/>
+                    <MarginLinkButton label="NEWS" link_to="/news"/>
+                    <MarginLinkButton label="MUSIC" link_to="/music"/>
+                    <MarginLinkButton label="MORE" link_to="/more"/>
                 </Buttons>
             </Margin>
             <Margin>
