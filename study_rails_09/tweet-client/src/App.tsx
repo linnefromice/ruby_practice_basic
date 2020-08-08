@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import Drawer from './layouts/Drawer';
-
+import TweetIndex from './layouts/tweet/TweetIndex';
 
 const Wrapper = styled.div`
   display: flex;
@@ -31,6 +31,9 @@ const Main = () => {
     <Switch>
       <Route exact path="/home">
         <p>HOME SCREEN</p>
+      </Route>
+      <Route path="/tweet/list">
+        <TweetIndex/>
       </Route>
       <Route path="/video">
         <p>VIDEO SCREEN</p>
