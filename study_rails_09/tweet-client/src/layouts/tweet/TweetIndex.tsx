@@ -66,18 +66,62 @@ const TweetList = () => {
 }
 
 const Tweet = (prop: TweetInterface) => {
+  const Wrapper = styled.div`
+    margin: 3vh auto;
+    width: 80%
+  `;
+  const DateWrapper = styled.div`
+    margin: 0.2vh 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+  `;
+  const UsernameWrapper = styled.div`
+    margin: 0.2vh 0;
+    font-size: 1.25rem;
+    color: #646464;
+    text-decoration: underline;
+  `;
+  const SentenceWrapper = styled.div`
+    margin: 0.2vh 0;
+    color: #646464;
+  `;
+  const Row = styled.div`
+    margin: 0.2vh 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+  `;
+  const BottomLine = styled.hr`
+    width: 85%;
+    height: 1vh;
+    border: none;
+    border-top: 0.05rem solid #646464;
+  `;
+  const LinkTitle = styled.div`
+    width: 10%;
+    text-align: center;
+    font-weight: bold;
+  `;
+  const LinkIcon = styled.div`
+    width: 5%;
+    color: #646464;
+  `;
+
   return (
-    <div>
-      {prop.created_at}<br/>
-      {prop.username}<br/>
-      {prop.sentence}<br/>
-    </div>
+    <Wrapper>
+      <DateWrapper>{prop.created_at}</DateWrapper>
+      <UsernameWrapper>{prop.username}</UsernameWrapper>
+      <SentenceWrapper>{prop.sentence}</SentenceWrapper>
+      <Row>
+        <BottomLine/>
+        <LinkTitle>Read More</LinkTitle>
+        <LinkIcon>></LinkIcon>
+      </Row>
+    </Wrapper>
   )
 }
 
 const TweetIndex = () => {
-  datas.forEach((data:TweetInterface) => console.log(data))
-
   return (
     <Wrapper>
       <Header>
