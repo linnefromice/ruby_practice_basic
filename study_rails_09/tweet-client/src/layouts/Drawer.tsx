@@ -47,6 +47,51 @@ const MarginLinkButton = (prop: Prop) => {
     )
 }
 
+const SnsLinks = () => {
+    const _flexWrapper = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    `;
+    
+    const _title = styled.div`
+        margin: 1vh 0;
+        font-size: 0.8rem;
+        color: #646464;
+    `;
+    
+    const _row = styled.div`
+        margin: 1vh 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+    `;
+    const _icon = styled.div`
+        margin 0 1vw;
+        width 3vh;
+        height 3vh;
+        border-radius: 4px;
+        background: #646464;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.5rem;
+    `;
+    
+    return (
+        <_flexWrapper>
+            <_title>SNS Icons</_title>
+            <_row>
+                <_icon>T</_icon>
+                <_icon>F</_icon>
+                <_icon>I</_icon>
+            </_row>
+        </_flexWrapper>
+    );
+}
+
 const Drawer = () => {
     return (
         <Wrapper>
@@ -65,7 +110,7 @@ const Drawer = () => {
                 </Buttons>
             </Margin>
             <Margin>
-                <p>Your Account</p>
+                <SnsLinks/>
             </Margin>
         </Wrapper>
     );

@@ -16,7 +16,7 @@ const Circle = styled.div`
     background-color: black;
     &:hover {
         background-color: gray;
-    }  
+    }
 `;
 const Label = styled.span`
     text-align: center;
