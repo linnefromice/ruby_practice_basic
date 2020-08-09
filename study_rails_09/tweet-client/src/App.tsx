@@ -13,7 +13,6 @@ const Wrapper = styled.div`
   display: flex;
   width: 100vw;
 `;
-
 const DrawerWrapper = styled.div`
   height: 100vh;
   width: 15%;

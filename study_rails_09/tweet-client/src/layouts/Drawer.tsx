@@ -2,97 +2,101 @@ import React from 'react';
 import styled from 'styled-components';
 import LinkButton from '../components/LinkButton';
 
-const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-const Margin = styled.div`
-    margin: 2vh 0;
-`;
-
-const Title = styled.div`
-    text-align: center;
-    color: white;
-    font-weight: bold;
-    font-size: 1.50rem;
-`;
-
-const SubTitle = styled.div`
-    text-align: center;
-    color: white;
-`;
-
-const Buttons = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-`;
-
 interface Prop {
     label: string
     link_to: string
 }
 
 const MarginLinkButton = (prop: Prop) => {
-    const _marginContainer = styled.div`
+    const MarginContainer = styled.div`
         margin: 0.5vh 0;
     `;
 
     return (
-        <_marginContainer>
+        <MarginContainer>
             <LinkButton label={prop.label} link_to={prop.link_to}/>
-        </_marginContainer>
+        </MarginContainer>
     )
 }
 
 const SnsLinks = () => {
-    const _flexWrapper = styled.div`
+    const FlexWrapper = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
     `;
     
-    const _title = styled.div`
+    const Title = styled.div`
         margin: 1vh 0;
         font-size: 0.8rem;
         color: #646464;
     `;
     
-    const _row = styled.div`
+    const Row = styled.div`
         margin: 1vh 0;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: row;
     `;
-    const _icon = styled.div`
-        margin 0 1vw;
+
+    const Icon = styled.div`
+        margin 0 0.5vw;
         width 3vh;
         height 3vh;
         border-radius: 4px;
-        background: #646464;
+        border: 1px solid #646464;
         display: flex;
         justify-content: center;
         align-items: center;
         font-size: 0.5rem;
+        &:hover {
+            background-color: #646464;
+        }        
     `;
     
     return (
-        <_flexWrapper>
-            <_title>SNS Icons</_title>
-            <_row>
-                <_icon>T</_icon>
-                <_icon>F</_icon>
-                <_icon>I</_icon>
-            </_row>
-        </_flexWrapper>
+        <FlexWrapper>
+            <Title>SNS Icons</Title>
+            <Row>
+                <Icon>T</Icon>
+                <Icon>F</Icon>
+                <Icon>I</Icon>
+            </Row>
+        </FlexWrapper>
     );
 }
 
 const Drawer = () => {
+    const Wrapper = styled.div`
+        display: flex;
+        flex-direction: column;
+    `;
+
+    const Margin = styled.div`
+        margin: 2vh 0;
+    `;
+
+    const Title = styled.div`
+        text-align: center;
+        color: white;
+        font-weight: bold;
+        font-size: 1.50rem;
+    `;
+
+    const SubTitle = styled.div`
+        text-align: center;
+        color: white;
+    `;
+
+    const Buttons = styled.div`
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    `;
+
     return (
         <Wrapper>
             <Margin>

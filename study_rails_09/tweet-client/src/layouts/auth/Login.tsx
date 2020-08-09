@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -26,7 +26,7 @@ const FormWrapper = styled.div`
   align-items: center;
   flex-direction: column;
 `;
-const FormRow = styled.div`
+const Row = styled.div`
   margin: 1vh 0;
   height: 5vh;
   display: flex;
@@ -62,21 +62,63 @@ const SubmitButton = styled.div`
 `;
 
 const Form = () => {
-  return (
-    <FormWrapper>
-      <FormRow>
-        <Label>Email</Label>
-        <Input/>
-      </FormRow>
-      <FormRow>
-        <Label>Password</Label>
-        <Input/>
-      </FormRow>
-      <FormRow>
-        <SubmitButton>LOGIN</SubmitButton>
-      </FormRow>
-    </FormWrapper>
-  );
+  const [formUsername, setFormUsername] = useState<string>("")
+  const [formPassword, setFormPassword] = useState<string>("")
+  const [isLogin, setIsLogin] = useState<boolean>(false)
+
+  function onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
+    setFormUsername(e.target.value)
+  }
+
+  function onChangePassword(e: React.ChangeEvent<HTMLInputElement>) {
+    setFormPassword(e.target.value)
+  }
+
+  function login() {
+    if (formUsername !== "" &&formPassword !== "" ) {
+      setIsLogin(true)
+    }
+  }
+
+  if (isLogin) {
+    return (
+      <FormWrapper>
+        <Row>
+          <Label>NAME</Label>
+          <Label>{formUsername}</Label>
+        </Row>
+        <Row>
+          <Label>PASSWORD</Label>
+          <Label>{formPassword}</Label>
+        </Row>
+      </FormWrapper>
+    );
+  } else {
+    return (
+      <FormWrapper>
+        <Row>
+          <Label>Email</Label>
+          <Input
+            placeholder="Input your username"
+            value={formUsername}
+            onChange={onChangeUsername}
+          />
+        </Row>
+        <Row>
+          <Label>Password</Label>
+          <Input
+            placeholder="Input your password"
+            value={formPassword}
+            onChange={onChangePassword}
+          />
+        </Row>
+        <Row>
+          <SubmitButton onClick={login}>LOGIN</SubmitButton>
+        </Row>
+      </FormWrapper>
+    );  
+  }
+
 }
 
 const Login: React.FC = () => {
