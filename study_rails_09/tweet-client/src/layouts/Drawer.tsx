@@ -61,7 +61,7 @@ const Drawer = () => {
                     <MarginLinkButton label="VIDEO" link_to="/video"/>
                     <MarginLinkButton label="NEWS" link_to="/news"/>
                     <MarginLinkButton label="MUSIC" link_to="/music"/>
-                    <MarginLinkButton label="MORE" link_to="/more"/>
+                    <MarginLinkButton label="Login" link_to="/login"/>
                 </Buttons>
             </Margin>
             <Margin>

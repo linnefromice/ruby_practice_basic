@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
+import Login from './layouts/auth/Login';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,8 +45,8 @@ const Main = () => {
       <Route path="/music">
         <p>MUSIC SCREEN</p>
       </Route>
-      <Route path="/more">
-        <p>MORE SCREEN</p>
+      <Route path="/login">
+        <Login/>
       </Route>
     </Switch>
   )
