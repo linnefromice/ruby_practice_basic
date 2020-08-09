@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { UserContext } from '../../global/contexts';
 
 const Wrapper = styled.div`
   display: flex;
@@ -62,9 +63,9 @@ const SubmitButton = styled.div`
 `;
 
 const Form = () => {
+  const {isLogin, setIsLogin, setUsername} = useContext(UserContext)
   const [formUsername, setFormUsername] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
-  const [isLogin, setIsLogin] = useState<boolean>(false)
 
   function onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
     setFormUsername(e.target.value)
@@ -77,20 +78,14 @@ const Form = () => {
   function login() {
     if (formUsername !== "" &&formPassword !== "" ) {
       setIsLogin(true)
+      setUsername(formUsername)
     }
   }
 
   if (isLogin) {
     return (
       <FormWrapper>
-        <Row>
-          <Label>NAME</Label>
-          <Label>{formUsername}</Label>
-        </Row>
-        <Row>
-          <Label>PASSWORD</Label>
-          <Label>{formPassword}</Label>
-        </Row>
+        You're already login... 
       </FormWrapper>
     );
   } else {

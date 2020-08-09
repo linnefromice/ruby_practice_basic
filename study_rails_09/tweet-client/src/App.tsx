@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom";
+} from 'react-router-dom';
+import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
 import Login from './layouts/auth/Login';
@@ -52,17 +53,22 @@ const Main = () => {
 };
 
 function App() {
+  const [isLogin, setIsLogin] = useState(false)
+  const [username, setUsername] = useState("")
+
   return (
-    <Router>
-      <Wrapper>
-        <DrawerWrapper>
-          <Drawer />
-        </DrawerWrapper>
-        <MainContainer>
-          <Main/>
-        </MainContainer>
-      </Wrapper>
-    </Router>
+    <UserContext.Provider value={{isLogin, setIsLogin, username, setUsername}}>
+      <Router>
+        <Wrapper>
+          <DrawerWrapper>
+            <Drawer />
+          </DrawerWrapper>
+          <MainContainer>
+            <Main/>
+          </MainContainer>
+        </Wrapper>
+      </Router>
+    </UserContext.Provider>
   );
 }
 

@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+
+import { UserContext } from '../global/contexts';
 import LinkButton from '../components/LinkButton';
+import DrawerButton from '../components/DrawerButton';
 
 interface Prop {
     label: string
@@ -69,6 +72,8 @@ const SnsLinks = () => {
 }
 
 const Drawer = () => {
+    const { isLogin, setIsLogin, setUsername } = useContext(UserContext);
+
     const Wrapper = styled.div`
         display: flex;
         flex-direction: column;
@@ -97,6 +102,23 @@ const Drawer = () => {
         flex-direction: column;
     `;
 
+    const AuthMenu = () => {
+        if (isLogin) {
+            const logout = () => {
+                setIsLogin(false)
+                setUsername("")
+                // TODO: routing
+            }
+            return (
+                <DrawerButton label="Logout" onClick={logout}/>
+            )
+        } else {
+            return (
+                <MarginLinkButton label="Login" link_to="/login"/>
+            )
+        }
+    }
+
     return (
         <Wrapper>
             <Margin>
@@ -110,7 +132,7 @@ const Drawer = () => {
                     <MarginLinkButton label="VIDEO" link_to="/video"/>
                     <MarginLinkButton label="NEWS" link_to="/news"/>
                     <MarginLinkButton label="MUSIC" link_to="/music"/>
-                    <MarginLinkButton label="Login" link_to="/login"/>
+                    <AuthMenu/>
                 </Buttons>
             </Margin>
             <Margin>
