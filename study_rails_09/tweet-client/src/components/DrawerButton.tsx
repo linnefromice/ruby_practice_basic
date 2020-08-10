@@ -22,14 +22,12 @@ const Label = styled.span`
 
 interface Prop {
     label: string
-    onClick: Function
+    onClick: () => void
 }
 
 const DrawerButton = (prop:Prop) => {
-  const onClick = () => prop.onClick;
-
   return (
-      <Circle onClick={onClick}>
+      <Circle onClick={prop.onClick}>
           <Label>{prop.label}</Label>
       </Circle>
   )

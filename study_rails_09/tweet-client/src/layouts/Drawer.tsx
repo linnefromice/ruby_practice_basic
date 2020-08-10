@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../global/contexts';
 import LinkButton from '../components/LinkButton';
@@ -73,6 +74,7 @@ const SnsLinks = () => {
 
 const Drawer = () => {
     const { isLogin, setIsLogin, setUsername } = useContext(UserContext);
+    let history = useHistory();
 
     const Wrapper = styled.div`
         display: flex;
@@ -102,13 +104,16 @@ const Drawer = () => {
         flex-direction: column;
     `;
 
+    // Don't 
+    const logout = () => {
+        setIsLogin(false)
+        setUsername("")
+        history.push("/home");
+        console.log("do logout")
+    }
+
     const AuthMenu = () => {
         if (isLogin) {
-            const logout = () => {
-                setIsLogin(false)
-                setUsername("")
-                // TODO: routing
-            }
             return (
                 <DrawerButton label="Logout" onClick={logout}/>
             )
@@ -127,7 +132,7 @@ const Drawer = () => {
             </Margin>
             <Margin>
                 <Buttons>
-                    <MarginLinkButton label="Top" link_to="/"/>
+                    <MarginLinkButton label="Top" link_to="/home"/>
                     <MarginLinkButton label="Watch" link_to="/tweet/list"/>
                     <MarginLinkButton label="VIDEO" link_to="/video"/>
                     <MarginLinkButton label="NEWS" link_to="/news"/>
