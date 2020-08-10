@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import axios from "axios"
 
 interface TweetInterface {
   sentence:string,
@@ -46,11 +47,20 @@ const Body = styled.div`
 `;
 
 const TweetList = () => {
-  const _datas = datas; // 本来はaxios利用
+  const [tweets, setTweets] = useState<TweetInterface[]>([])
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/tweets')
+    .then(result => {
+      setTweets(result.data)
+    })
+    .catch(err => console.log(err))
+  }, [])
+
   return (
     <div>
       {
-        _datas.map((data:TweetInterface, index:number) => {
+        tweets.map((data:TweetInterface, index:number) => {
           return (
             <Tweet
               key={index}
