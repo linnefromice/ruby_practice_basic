@@ -8,6 +8,7 @@ import {
 import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
+import CreateTweet from './layouts/tweet/CreateTweet';
 import Login from './layouts/auth/Login';
 
 const Wrapper = styled.div`
@@ -37,7 +38,7 @@ const Main = () => {
         <TweetIndex/>
       </Route>
       <Route path="/tweet/new">
-        <p>Tweet New SCREEN</p>
+        <CreateTweet/>
       </Route>
       <Route path="/login">
         <Login/>
