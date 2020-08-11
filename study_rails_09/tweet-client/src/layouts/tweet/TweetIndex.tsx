@@ -8,7 +8,7 @@ interface TweetInterface {
   created_at:string,
 }
 
-const datas = [
+const dummyDatas = [
   {
     sentence: "バルサまた負けた...デンベレ帰ってきてー",
     username: "恋する凡人",
@@ -57,22 +57,42 @@ const TweetList = () => {
     .catch(err => console.log(err))
   }, [])
 
-  return (
-    <div>
-      {
-        tweets.map((data:TweetInterface, index:number) => {
-          return (
-            <Tweet
-              key={index}
-              created_at={data.created_at}
-              username={data.username}
-              sentence={data.sentence}
-            />
-          )
-        })
-      }
-    </div>
-  )
+  if (tweets.length !== 0) {
+    console.log(tweets)
+    return (
+      <div>
+        {
+          tweets.map((data:TweetInterface, index:number) => {
+            return (
+              <Tweet
+                key={index}
+                created_at={data.created_at}
+                username={data.username}
+                sentence={data.sentence}
+              />
+            )
+          })
+        }
+      </div>
+    )
+  } else {
+    return (
+      <div>
+        {
+          dummyDatas.map((data:TweetInterface, index:number) => {
+            return (
+              <Tweet
+                key={index}
+                created_at={data.created_at}
+                username={data.username}
+                sentence={data.sentence}
+              />
+            )
+          })
+        }
+      </div>
+    )
+  }
 }
 
 const Tweet = (prop: TweetInterface) => {

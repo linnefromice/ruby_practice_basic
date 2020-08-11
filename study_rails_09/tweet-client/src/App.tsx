@@ -36,14 +36,8 @@ const Main = () => {
       <Route path="/tweet/list">
         <TweetIndex/>
       </Route>
-      <Route path="/video">
-        <p>VIDEO SCREEN</p>
-      </Route>
-      <Route path="/news">
-        <p>NEWS SCREEN</p>
-      </Route>
-      <Route path="/music">
-        <p>MUSIC SCREEN</p>
+      <Route path="/tweet/new">
+        <p>Tweet New SCREEN</p>
       </Route>
       <Route path="/login">
         <Login/>

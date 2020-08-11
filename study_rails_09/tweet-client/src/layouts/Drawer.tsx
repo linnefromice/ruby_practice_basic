@@ -104,24 +104,35 @@ const Drawer = () => {
         flex-direction: column;
     `;
 
-    // Don't 
-    const logout = () => {
-        setIsLogin(false)
-        setUsername("")
-        history.push("/home");
-        console.log("do logout")
+    const AuthenticatedMenu = () => {
+        const logout = () => {
+            setIsLogin(false)
+            setUsername("")
+            history.push("/home");
+        }
+
+        return (
+            <Buttons>
+                <MarginLinkButton label="Top" link_to="/home"/>
+                <MarginLinkButton label="Watch" link_to="/tweet/list"/>
+                <MarginLinkButton label="New" link_to="/tweet/new"/>
+                <DrawerButton label="Logout" onClick={logout}/>
+            </Buttons>
+        )
     }
 
-    const AuthMenu = () => {
-        if (isLogin) {
-            return (
-                <DrawerButton label="Logout" onClick={logout}/>
-            )
-        } else {
-            return (
+    const UnauthenticatedMenu = () => {
+        return (
+            <Buttons>
+                <MarginLinkButton label="Top" link_to="/home"/>
+                <MarginLinkButton label="Watch" link_to="/tweet/list"/>
                 <MarginLinkButton label="Login" link_to="/login"/>
-            )
-        }
+            </Buttons>
+        )
+    }
+
+    const Menus = () => {
+        return isLogin ? <AuthenticatedMenu/> : <UnauthenticatedMenu/>
     }
 
     return (
@@ -131,14 +142,7 @@ const Drawer = () => {
                 <SubTitle>With saving your private...</SubTitle>
             </Margin>
             <Margin>
-                <Buttons>
-                    <MarginLinkButton label="Top" link_to="/home"/>
-                    <MarginLinkButton label="Watch" link_to="/tweet/list"/>
-                    <MarginLinkButton label="VIDEO" link_to="/video"/>
-                    <MarginLinkButton label="NEWS" link_to="/news"/>
-                    <MarginLinkButton label="MUSIC" link_to="/music"/>
-                    <AuthMenu/>
-                </Buttons>
+                <Menus/>
             </Margin>
             <Margin>
                 <SnsLinks/>
