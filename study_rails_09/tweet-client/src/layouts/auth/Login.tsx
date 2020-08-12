@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import axios from "axios"
+
 import { UserContext } from '../../global/contexts';
 
 const Wrapper = styled.div`
@@ -63,12 +65,12 @@ const SubmitButton = styled.div`
 `;
 
 const Form = () => {
-  const {isLogin, setIsLogin, setUsername} = useContext(UserContext)
-  const [formUsername, setFormUsername] = useState<string>("")
+  const {isLogin, setIsLogin, username, setUsername} = useContext(UserContext)
+  const [formEmail, setFormEmail] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
 
-  function onChangeUsername(e: React.ChangeEvent<HTMLInputElement>) {
-    setFormUsername(e.target.value)
+  function onChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
+    setFormEmail(e.target.value)
   }
 
   function onChangePassword(e: React.ChangeEvent<HTMLInputElement>) {
@@ -76,16 +78,32 @@ const Form = () => {
   }
 
   function login() {
-    if (formUsername !== "" &&formPassword !== "" ) {
-      setIsLogin(true)
-      setUsername(formUsername)
+    if (formEmail == "" || formPassword == "") {
+      return;
     }
+
+    axios.post('http://localhost:3001/sign_in', {
+      email: formEmail,
+      password: formPassword
+    }).then(res => {
+      setIsLogin(true)
+      setUsername(res.data.name)
+    }).catch(err => {
+      setIsLogin(false)
+      setUsername("")
+    });
   }
 
   if (isLogin) {
     return (
       <FormWrapper>
-        You're already login... 
+        <Row>
+          You're already login...
+        </Row>
+        <Row>
+          <Label>Username</Label>
+          <Label>{username}</Label>
+        </Row>
       </FormWrapper>
     );
   } else {
@@ -95,8 +113,8 @@ const Form = () => {
           <Label>Email</Label>
           <Input
             placeholder="Input your username"
-            value={formUsername}
-            onChange={onChangeUsername}
+            value={formEmail}
+            onChange={onChangeEmail}
           />
         </Row>
         <Row>
