@@ -5,6 +5,8 @@ import {
   Switch,
   Route,
 } from 'react-router-dom';
+
+import UserInterface from './models/UserInterface';
 import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
@@ -49,10 +51,10 @@ const Main = () => {
 
 function App() {
   const [isLogin, setIsLogin] = useState(false)
-  const [username, setUsername] = useState("")
+  const [user, setUser] = useState<UserInterface>({ id: 0, email: "", name: "" })
 
   return (
-    <UserContext.Provider value={{isLogin, setIsLogin, username, setUsername}}>
+    <UserContext.Provider value={{isLogin, setIsLogin, user, setUser}}>
       <Router>
         <Wrapper>
           <DrawerWrapper>

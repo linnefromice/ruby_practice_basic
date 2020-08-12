@@ -73,7 +73,7 @@ const SnsLinks = () => {
 }
 
 const Drawer = () => {
-    const { isLogin, setIsLogin, setUsername } = useContext(UserContext);
+    const { isLogin, setIsLogin, setUser } = useContext(UserContext);
     let history = useHistory();
 
     const Wrapper = styled.div`
@@ -107,7 +107,7 @@ const Drawer = () => {
     const AuthenticatedMenu = () => {
         const logout = () => {
             setIsLogin(false)
-            setUsername("")
+            setUser({ id: 0, email: "", name: "" })
             history.push("/home");
         }
 

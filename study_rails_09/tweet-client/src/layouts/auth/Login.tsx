@@ -65,7 +65,7 @@ const SubmitButton = styled.div`
 `;
 
 const Form = () => {
-  const {isLogin, setIsLogin, username, setUsername} = useContext(UserContext)
+  const {isLogin, setIsLogin, user, setUser} = useContext(UserContext)
   const [formEmail, setFormEmail] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
 
@@ -86,11 +86,16 @@ const Form = () => {
       email: formEmail,
       password: formPassword
     }).then(res => {
+      console.log(res)
       setIsLogin(true)
-      setUsername(res.data.name)
+      setUser({
+        id: res.data.id,
+        email: res.data.email,
+        name: res.data.name
+      })
     }).catch(err => {
       setIsLogin(false)
-      setUsername("")
+      setUser(null)
     });
   }
 
@@ -102,7 +107,7 @@ const Form = () => {
         </Row>
         <Row>
           <Label>Username</Label>
-          <Label>{username}</Label>
+          <Label>{user.name}</Label>
         </Row>
       </FormWrapper>
     );

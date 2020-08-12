@@ -1,17 +1,22 @@
 import { createContext } from 'react';
+import UserInterface from '../models/UserInterface'
 
 interface UserContextValue {
   isLogin: boolean,
   setIsLogin: any,
-  username: string,
-  setUsername: any,
+  user: UserInterface,
+  setUser: any,
 }
 
 export const UserContext = createContext<UserContextValue>(
   {
     isLogin: false,
     setIsLogin: null,
-    username: "",
-    setUsername: null
+    user: {
+      id: 0,
+      email: "",
+      name: "",
+    },
+    setUser: null
   }
 )
