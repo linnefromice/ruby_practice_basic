@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import axios from "axios"
 
 import { UserContext } from '../../global/contexts';
+import ErrorModal from '../../components/ErrorModal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ const Form = () => {
   const {isLogin, setIsLogin, user, setUser} = useContext(UserContext)
   const [formEmail, setFormEmail] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
+  const [error, setError] = useState<string>("")
 
   function onChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
     setFormEmail(e.target.value)
@@ -94,9 +96,21 @@ const Form = () => {
         name: res.data.name
       })
     }).catch(err => {
+      console.log(err.response)
       setIsLogin(false)
       setUser(null)
+      setError(err.response.data.errors[0])
     });
+  }
+
+  const Error = () => {
+    if (error !== "") {
+      return (
+        <ErrorModal error={error} setError={setError} />
+      )
+    } else {
+      return null;
+    }
   }
 
   if (isLogin) {
@@ -114,6 +128,7 @@ const Form = () => {
   } else {
     return (
       <FormWrapper>
+        <Error/>
         <Row>
           <Label>Email</Label>
           <Input
