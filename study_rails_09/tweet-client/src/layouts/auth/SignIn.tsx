@@ -79,8 +79,8 @@ const Form = () => {
     setFormPassword(e.target.value)
   }
 
-  function login() {
-    if (formEmail == "" || formPassword == "") {
+  function signIn() {
+    if (formEmail === "" || formPassword === "") {
       return;
     }
 
@@ -132,7 +132,7 @@ const Form = () => {
         <Row>
           <Label>Email</Label>
           <Input
-            placeholder="Input your username"
+            placeholder="Input your email"
             value={formEmail}
             onChange={onChangeEmail}
           />
@@ -146,7 +146,7 @@ const Form = () => {
           />
         </Row>
         <Row>
-          <SubmitButton onClick={login}>LOGIN</SubmitButton>
+          <SubmitButton onClick={signIn}>Sign In</SubmitButton>
         </Row>
       </FormWrapper>
     );  
@@ -154,15 +154,15 @@ const Form = () => {
 
 }
 
-const Login: React.FC = () => {
+const SignIn: React.FC = () => {
   return (
      <Wrapper>
       <Header>
-        <Title>LOGIN</Title>
+        <Title>Sign In</Title>
       </Header>
       <Form/>
     </Wrapper>
   );
 }
 
-export default Login;
+export default SignIn;
