@@ -12,6 +12,7 @@ import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
 import CreateTweet from './layouts/tweet/CreateTweet';
 import Login from './layouts/auth/Login';
+import SignUp from './layouts/auth/SignUp';
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,6 +45,9 @@ const Main = () => {
       </Route>
       <Route path="/login">
         <Login/>
+      </Route>
+      <Route path="/sign_up">
+        <SignUp/>
       </Route>
     </Switch>
   )

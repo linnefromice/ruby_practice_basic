@@ -127,6 +127,7 @@ const Drawer = () => {
                 <MarginLinkButton label="Top" link_to="/home"/>
                 <MarginLinkButton label="Watch" link_to="/tweet/list"/>
                 <MarginLinkButton label="Login" link_to="/login"/>
+                <MarginLinkButton label="Sign up" link_to="/sign_up"/>
             </Buttons>
         )
     }
