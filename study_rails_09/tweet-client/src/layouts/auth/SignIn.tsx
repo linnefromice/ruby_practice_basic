@@ -69,7 +69,7 @@ const Form = () => {
   const {isLogin, setIsLogin, user, setUser} = useContext(UserContext)
   const [formEmail, setFormEmail] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
-  const [error, setError] = useState<string>("")
+  const [errors, setErrors] = useState<string[]>([])
 
   function onChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
     setFormEmail(e.target.value)
@@ -99,14 +99,14 @@ const Form = () => {
       console.log(err.response)
       setIsLogin(false)
       setUser(null)
-      setError(err.response.data.errors[0])
+      setErrors(err.response.data.errors)
     });
   }
 
   const Error = () => {
-    if (error !== "") {
+    if (errors.length !== 0) {
       return (
-        <ErrorModal error={error} setError={setError} />
+        <ErrorModal errors={errors} setErrors={setErrors} />
       )
     } else {
       return null;

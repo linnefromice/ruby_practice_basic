@@ -66,7 +66,7 @@ const TweetList = () => {
             return (
               <Tweet
                 key={index}
-                created_at={data.created_at}
+                created_at={data.created_at.replace('T', ' ').replace('Z', '')}
                 username={data.username}
                 sentence={data.sentence}
               />

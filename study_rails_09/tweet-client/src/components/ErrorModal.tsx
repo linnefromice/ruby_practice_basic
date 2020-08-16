@@ -36,20 +36,22 @@ const Button = styled.div`
 `
 
 interface Prop {
-    error: string
-    setError: React.Dispatch<React.SetStateAction<string>>
+    errors: string[]
+    setErrors: React.Dispatch<React.SetStateAction<string[]>>
 }
 
 
 const ErrorModal = (prop:Prop) => {
-    const resetMessage = () => {
-        prop.setError("")
+    const resetMessages = () => {
+        prop.setErrors([])
     }
 
     return (
         <Wrapper>
-            <Message>{prop.error}</Message>
-            <Button onClick={resetMessage}>OK</Button>
+            {prop.errors.map((error:string, index:number) => {
+                return (<Message key={`error.${index}`}>{error}</Message>)
+            })}
+            <Button onClick={resetMessages}>OK</Button>
         </Wrapper>
     )
 }
