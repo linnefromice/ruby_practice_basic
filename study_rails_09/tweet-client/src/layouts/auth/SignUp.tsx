@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import ErrorModal from '../../components/ErrorModal';
 
@@ -64,6 +65,7 @@ const SubmitButton = styled.div`
 `;
 
 const Form = () => {
+  const [isSignedUp, setIsSignedUp] = useState<boolean>(false)
   const [formName, setFormName] = useState<string>("")
   const [formEmail, setFormEmail] = useState<string>("")
   const [formPassword, setFormPassword] = useState<string>("")
@@ -81,6 +83,24 @@ const Form = () => {
     setFormPassword(e.target.value)
   }
 
+  function signUp() {
+    if (formEmail === "" || formPassword === "") {
+      return;
+    }
+
+    axios.post('http://localhost:3001/sign_up', {
+      name: formName,
+      email: formEmail,
+      password: formPassword
+    }).then(res => {
+      console.log(res)
+      setIsSignedUp(true)
+    }).catch(err => {
+      console.log(err.response)
+      setError(err.response.data.errors[0])
+    });
+  }
+
   const Error = () => {
     if (error !== "") {
       return (
@@ -91,38 +111,51 @@ const Form = () => {
     }
   }
 
-  return (
-    <FormWrapper>
-      <Error/>
-      <Row>
-        <Label>Name</Label>
-        <Input
-        placeholder="Input your name"
-        value={formName}
-        onChange={onChangeName}
-        />
-      </Row>
-      <Row>
-        <Label>Email</Label>
-        <Input
-        placeholder="Input your email"
-        value={formEmail}
-        onChange={onChangeEmail}
-        />
-      </Row>
-      <Row>
-        <Label>Password</Label>
-        <Input
-        placeholder="Input your password"
-        value={formPassword}
-        onChange={onChangePassword}
-        />
-      </Row>
-      <Row>
-        <SubmitButton onClick={() => {}}>SIGN UP</SubmitButton>
-      </Row>
-    </FormWrapper>
-)
+  if (isSignedUp) {
+    return (
+      <FormWrapper>
+        <Row>
+          Thank you!
+        </Row>
+        <Row>
+          Created new account! Please login!
+        </Row>
+      </FormWrapper>
+    )  
+  } else {
+    return (
+      <FormWrapper>
+        <Error/>
+        <Row>
+          <Label>Name</Label>
+          <Input
+            placeholder="Input your name"
+            value={formName}
+            onChange={onChangeName}
+          />
+        </Row>
+        <Row>
+          <Label>Email</Label>
+          <Input
+            placeholder="Input your email"
+            value={formEmail}
+            onChange={onChangeEmail}
+          />
+        </Row>
+        <Row>
+          <Label>Password</Label>
+          <Input
+            placeholder="Input your password"
+            value={formPassword}
+            onChange={onChangePassword}
+          />
+        </Row>
+        <Row>
+          <SubmitButton onClick={signUp}>SIGN UP</SubmitButton>
+        </Row>
+      </FormWrapper>
+    )
+  }
 }
 
 const SignUp: React.FC = () => {
