@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios"
 
+import { UserContext } from '../../global/contexts';
+
 interface TweetInterface {
   sentence:string,
-  username:string,
+  name:string,
   created_at:string,
 }
 
 const dummyDatas = [
   {
     sentence: "バルサまた負けた...デンベレ帰ってきてー",
-    username: "恋する凡人",
+    name: "恋する凡人",
     created_at: "2020.08.01",
   },
   {
     sentence: "最初のツイート。",
-    username: "恋する凡人",
+    name: "恋する凡人",
     created_at: "2020.07.29",
   },
   {
     sentence: "Welcome! Everyone is waiting for your first tweet!",
-    username: "Operator",
+    name: "Operator",
     created_at: "2020.07.28",
   }
 ]
@@ -46,7 +48,7 @@ const TweetList = () => {
               <Tweet
                 key={index}
                 created_at={data.created_at.replace('T', ' ').replace('Z', '')}
-                username={data.username}
+                name={data.name}
                 sentence={data.sentence}
               />
             )
@@ -63,7 +65,7 @@ const TweetList = () => {
               <Tweet
                 key={index}
                 created_at={data.created_at}
-                username={data.username}
+                name={data.name}
                 sentence={data.sentence}
               />
             )
@@ -118,7 +120,7 @@ const Tweet = (prop: TweetInterface) => {
   return (
     <Wrapper>
       <DateWrapper>{prop.created_at}</DateWrapper>
-      <UsernameWrapper>{prop.username}</UsernameWrapper>
+      <UsernameWrapper>{prop.name}</UsernameWrapper>
       <SentenceWrapper>{prop.sentence}</SentenceWrapper>
       <Row>
         <BottomLine/>
@@ -126,6 +128,44 @@ const Tweet = (prop: TweetInterface) => {
         <LinkIcon>></LinkIcon>
       </Row>
     </Wrapper>
+  )
+}
+
+const ToggleButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+const ToggleButtonMessage = styled.div`
+  margin: 2vh 1vw;
+`;
+const CheckedButton = styled.div`
+  margin: 2vh 1vw;
+  height: 3vh;
+  width: 6vw;
+  border-radius: 6vw;
+  background: linear-gradient(90deg, lightgreen 0%, lightgreen 50%, gray 50%, gray 100%);
+  box-shadow: 2px 2px lightgray;
+`
+const UncheckedButton = styled.div`
+  margin: 2vh 1vw;
+  height: 3vh;
+  width: 6vw;
+  border-radius: 6vw;
+  background: linear-gradient(90deg, gray 0%, gray 50%, lightcoral 50%, lightcoral 100%);
+  box-shadow: 2px 2px lightgray;
+`;
+interface FocusedTweetToggleButtonProp {
+  checked: boolean
+  setChecked: React.Dispatch<React.SetStateAction<boolean>>
+}
+const FocusedTweetToggleButton = (prop: FocusedTweetToggleButtonProp) => {
+  return (
+    <ToggleButtonWrapper>
+      <ToggleButtonMessage>Only your tweets?</ToggleButtonMessage>
+      { prop.checked ? <CheckedButton onClick={() => prop.setChecked(false)}/> : <UncheckedButton onClick={() => prop.setChecked(true)}/> }
+    </ToggleButtonWrapper>
   )
 }
 
@@ -149,12 +189,16 @@ const Body = styled.div`
   width: 100%;
 `;
 const TweetIndex = () => {
+  const { isLogin, user } = useContext(UserContext);
+  const [checked, setChecked] = useState<boolean>(false)
+
   return (
     <TopWrapper>
       <Header>
         <Title>TWEET</Title>
       </Header>
       <Body>
+        <FocusedTweetToggleButton checked={checked} setChecked={setChecked}/>
         <TweetList/>
       </Body>
     </TopWrapper>
