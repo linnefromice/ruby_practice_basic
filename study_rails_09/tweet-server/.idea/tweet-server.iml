@@ -311,6 +311,24 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="database_cleaner (vbundled(1.8.5)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/database_cleaner-1.8.5/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/database_cleaner-1.8.5/adapters" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/database_cleaner-1.8.5/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/database_cleaner-1.8.5/adapters" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/2.6.0/gems/database_cleaner-1.8.5/adapters" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="diff-lcs (vbundled(1.4.4)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
