@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if @user.save
       render json: @user
     else
-      render json: { errors: @user.errors.full_messages }, status: 401
+      render json: { errors: @user.errors.full_messages }, status: 400
     end
   end
 
