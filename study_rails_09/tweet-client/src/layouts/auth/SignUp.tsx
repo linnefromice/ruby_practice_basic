@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
-import ErrorModal from '../../components/ErrorModal';
+import ErrorModal from '../../components/common/ErrorModal';
 import UserInterface from '../../models/UserInterface';
 
 const Wrapper = styled.div`

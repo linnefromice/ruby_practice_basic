@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from "axios"
 
 import { UserContext } from '../../global/contexts';
-import ErrorModal from '../../components/ErrorModal';
+import ErrorModal from '../../components/common/ErrorModal';
 
 const Wrapper = styled.div`
   display: flex;

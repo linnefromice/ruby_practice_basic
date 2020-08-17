@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
 import { UserContext } from '../global/contexts';
-import LinkButton from '../components/LinkButton';
-import DrawerButton from '../components/DrawerButton';
+import LinkButton from '../components/common/LinkButton';
+import DrawerButton from '../components/common/DrawerButton';
 
 interface Prop {
     label: string
