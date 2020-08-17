@@ -26,26 +26,6 @@ const dummyDatas = [
   }
 ]
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-`;
-const Header = styled.div`
-  height: 25%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Title = styled.div`
-  color: #646464;
-  font-size: 3.0rem;
-`;
-const Body = styled.div`
-  width: 100%;
-`;
-
 const TweetList = () => {
   const [tweets, setTweets] = useState<TweetInterface[]>([])
 
@@ -58,7 +38,6 @@ const TweetList = () => {
   }, [])
 
   if (tweets.length !== 0) {
-    console.log(tweets)
     return (
       <div>
         {
@@ -95,48 +74,47 @@ const TweetList = () => {
   }
 }
 
+const Wrapper = styled.div`
+  margin: 3vh auto;
+  width: 80%
+`;
+const DateWrapper = styled.div`
+  margin: 0.2vh 0;
+  font-size: 1.25rem;
+  font-weight: bold;
+`;
+const UsernameWrapper = styled.div`
+  margin: 0.2vh 0;
+  font-size: 1.25rem;
+  color: #646464;
+  text-decoration: underline;
+`;
+const SentenceWrapper = styled.div`
+  margin: 0.2vh 0;
+  color: #646464;
+`;
+const Row = styled.div`
+  margin: 0.2vh 0;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+`;
+const BottomLine = styled.hr`
+  width: 85%;
+  height: 1vh;
+  border: none;
+  border-top: 0.05rem solid #646464;
+`;
+const LinkTitle = styled.div`
+  width: 10%;
+  text-align: center;
+  font-weight: bold;
+`;
+const LinkIcon = styled.div`
+  width: 5%;
+  color: #646464;
+`;
 const Tweet = (prop: TweetInterface) => {
-  const Wrapper = styled.div`
-    margin: 3vh auto;
-    width: 80%
-  `;
-  const DateWrapper = styled.div`
-    margin: 0.2vh 0;
-    font-size: 1.25rem;
-    font-weight: bold;
-  `;
-  const UsernameWrapper = styled.div`
-    margin: 0.2vh 0;
-    font-size: 1.25rem;
-    color: #646464;
-    text-decoration: underline;
-  `;
-  const SentenceWrapper = styled.div`
-    margin: 0.2vh 0;
-    color: #646464;
-  `;
-  const Row = styled.div`
-    margin: 0.2vh 0;
-    display: flex;
-    justify-content: space-around;
-    flex-direction: row;
-  `;
-  const BottomLine = styled.hr`
-    width: 85%;
-    height: 1vh;
-    border: none;
-    border-top: 0.05rem solid #646464;
-  `;
-  const LinkTitle = styled.div`
-    width: 10%;
-    text-align: center;
-    font-weight: bold;
-  `;
-  const LinkIcon = styled.div`
-    width: 5%;
-    color: #646464;
-  `;
-
   return (
     <Wrapper>
       <DateWrapper>{prop.created_at}</DateWrapper>
@@ -151,16 +129,35 @@ const Tweet = (prop: TweetInterface) => {
   )
 }
 
+const TopWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+const Header = styled.div`
+  height: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const Title = styled.div`
+  color: #646464;
+  font-size: 3.0rem;
+`;
+const Body = styled.div`
+  width: 100%;
+`;
 const TweetIndex = () => {
   return (
-    <Wrapper>
+    <TopWrapper>
       <Header>
         <Title>TWEET</Title>
       </Header>
       <Body>
         <TweetList/>
       </Body>
-    </Wrapper>
+    </TopWrapper>
   )
 }
 
