@@ -28,16 +28,27 @@ const dummyDatas = [
   }
 ]
 
-const TweetList = () => {
+interface TweetListProp {
+  isOnlyOwn: boolean
+}
+const TweetList = (prop: TweetListProp) => {
+  const { isLogin, user } = useContext(UserContext);
   const [tweets, setTweets] = useState<TweetInterface[]>([])
+  const BASE_URL = 'http://localhost:3001/tweets'
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/tweets')
+  const fetchTweets = () => {
+    // ログイン済 かつ 自Tweetのみチェック を入れている場合
+    const URL = isLogin && prop.isOnlyOwn ? `${BASE_URL}?user_id=${user.id}` : BASE_URL
+    axios.get(URL)
     .then(result => {
       setTweets(result.data)
     })
     .catch(err => console.log(err))
-  }, [])
+  }
+
+  useEffect(() => {
+    fetchTweets()
+  }, [prop.isOnlyOwn])
 
   if (tweets.length !== 0) {
     return (
@@ -157,14 +168,14 @@ const UncheckedButton = styled.div`
   box-shadow: 2px 2px lightgray;
 `;
 interface FocusedTweetToggleButtonProp {
-  checked: boolean
-  setChecked: React.Dispatch<React.SetStateAction<boolean>>
+  isOnlyOwn: boolean
+  setIsOnlyOwn: React.Dispatch<React.SetStateAction<boolean>>
 }
 const FocusedTweetToggleButton = (prop: FocusedTweetToggleButtonProp) => {
   return (
     <ToggleButtonWrapper>
       <ToggleButtonMessage>Only your tweets?</ToggleButtonMessage>
-      { prop.checked ? <CheckedButton onClick={() => prop.setChecked(false)}/> : <UncheckedButton onClick={() => prop.setChecked(true)}/> }
+      { prop.isOnlyOwn ? <CheckedButton onClick={() => prop.setIsOnlyOwn(false)}/> : <UncheckedButton onClick={() => prop.setIsOnlyOwn(true)}/> }
     </ToggleButtonWrapper>
   )
 }
@@ -189,8 +200,8 @@ const Body = styled.div`
   width: 100%;
 `;
 const TweetIndex = () => {
-  const { isLogin, user } = useContext(UserContext);
-  const [checked, setChecked] = useState<boolean>(false)
+  const [isOnlyOwn, setIsOnlyOwn] = useState<boolean>(false)
+  const { isLogin } = useContext(UserContext);
 
   return (
     <TopWrapper>
@@ -198,8 +209,8 @@ const TweetIndex = () => {
         <Title>TWEET</Title>
       </Header>
       <Body>
-        <FocusedTweetToggleButton checked={checked} setChecked={setChecked}/>
-        <TweetList/>
+        { isLogin ? <FocusedTweetToggleButton isOnlyOwn={isOnlyOwn} setIsOnlyOwn={setIsOnlyOwn}/> : null}
+        <TweetList isOnlyOwn={isOnlyOwn} />
       </Body>
     </TopWrapper>
   )

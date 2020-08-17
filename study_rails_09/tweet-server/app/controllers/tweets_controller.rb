@@ -1,11 +1,13 @@
 class TweetsController < ApplicationController
   def show
     if params[:user_id]
-      @tweets = User.find(params[:user_id]).tweets
+      @tweets = User.find(params[:user_id]).tweets.eager_load(:user).select("tweets.*, users.name").order(id: :desc)
     else
-      @tweets = Tweet.all
+      @tweets = Tweet.eager_load(:user).select("tweets.*, users.name").order(id: :desc)
     end
     render json: @tweets
+  rescue ActiveRecord::RecordNotFound
+    render json: Tweet.eager_load(:user).select("tweets.*, users.name").order(id: :desc)
   end
 
   def create

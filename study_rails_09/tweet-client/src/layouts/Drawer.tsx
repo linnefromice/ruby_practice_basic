@@ -2,7 +2,6 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useHistory } from 'react-router-dom';
 
-import UserInterface from '../models/UserInterface';
 import { UserContext } from '../global/contexts';
 import SnsLinks from '../components/drawer/SnsLinks';
 import LinkButton from '../components/common/LinkButton';
