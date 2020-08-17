@@ -5,5 +5,5 @@ class User < ApplicationRecord
   validates :name, { presence: true }
   validates :email, { presence: true, format: { with: VALID_EMAIL_REGAX }, uniqueness: { case_sensitive: false} }
 
-  has_many :tweet
+  has_many :tweets
 end

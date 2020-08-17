@@ -10,7 +10,7 @@ class TweetsController < ApplicationController
 
   def create
     if params[:user_id]
-      User.find(params[:user_id]).tweet.create!(sentence: params[:sentence])
+      User.find(params[:user_id]).tweets.create!(sentence: params[:sentence])
     end
   end
 
