@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import axios from "axios"
+
+import { UserContext } from '../../global/contexts'
+import ErrorModal from '../common/ErrorModal';
 
 const Wrapper = styled.div`
   display: flex;
@@ -43,14 +46,52 @@ const SubmitButton = styled.div`
 `;
 
 const CreateTweet = () => {
-    return (
-        <Wrapper>
-          <Row>
-            <Input/>
-            <SubmitButton>New Tweet!</SubmitButton>
-          </Row>
-        </Wrapper>
-    )
+  const { user } = useContext(UserContext)
+  const [sentence, setSentence] = useState<string>("")
+  const [errors, setErrors] = useState<string[]>([])
+
+  function onChangeSentence(e: React.ChangeEvent<HTMLInputElement>) {
+    setSentence(e.target.value)
+  }
+  function submit() {
+    if (sentence === '') return;
+    
+    axios.post('http://localhost:3001/tweets', {
+      user_id: user.id,
+      sentence: sentence
+    })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err.response)
+      setErrors(err.response.data.errors)
+    });
+  }
+
+  const Error = () => {
+    if (errors.length !== 0) {
+      return (
+        <ErrorModal errors={errors} setErrors={setErrors} />
+      )
+    } else {
+      return null;
+    }
+  }
+
+  return (
+      <Wrapper>
+        <Error/>
+        <Row>
+          <Input
+            placeholder="Please input new tweet!"
+            value={sentence}
+            onChange={onChangeSentence}
+          />
+          <SubmitButton onClick={submit}>New Tweet!</SubmitButton>
+        </Row>
+      </Wrapper>
+  )
 }
 
 export default CreateTweet;
