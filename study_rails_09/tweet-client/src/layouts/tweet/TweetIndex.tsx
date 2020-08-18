@@ -3,6 +3,7 @@ import styled from "styled-components";
 import axios from "axios"
 
 import { UserContext } from '../../global/contexts';
+import CreateTweet from '../../components/tweet/CreateTweet';
 
 interface TweetInterface {
   sentence:string,
@@ -209,7 +210,13 @@ const TweetIndex = () => {
         <Title>TWEET</Title>
       </Header>
       <Body>
-        { isLogin ? <FocusedTweetToggleButton isOnlyOwn={isOnlyOwn} setIsOnlyOwn={setIsOnlyOwn}/> : null}
+        { isLogin ?
+          <div>
+            <FocusedTweetToggleButton isOnlyOwn={isOnlyOwn} setIsOnlyOwn={setIsOnlyOwn}/>
+            <CreateTweet/>
+          </div>
+          : null
+        }
         <TweetList isOnlyOwn={isOnlyOwn} />
       </Body>
     </TopWrapper>

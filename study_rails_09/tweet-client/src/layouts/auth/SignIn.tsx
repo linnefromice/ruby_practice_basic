@@ -65,10 +65,13 @@ const SubmitButton = styled.div`
   }
 `;
 
+const INITIAL_ACCOUNT_EMAIL = 'moguo@mognet.com' // for debug
+const INITIAL_ACCOUNT_PASSWORD = 'password' // for debug
+
 const Form = () => {
   const {isLogin, setIsLogin, user, setUser} = useContext(UserContext)
-  const [formEmail, setFormEmail] = useState<string>("")
-  const [formPassword, setFormPassword] = useState<string>("")
+  const [formEmail, setFormEmail] = useState<string>(INITIAL_ACCOUNT_EMAIL)
+  const [formPassword, setFormPassword] = useState<string>(INITIAL_ACCOUNT_PASSWORD)
   const [errors, setErrors] = useState<string[]>([])
 
   function onChangeEmail(e: React.ChangeEvent<HTMLInputElement>) {
