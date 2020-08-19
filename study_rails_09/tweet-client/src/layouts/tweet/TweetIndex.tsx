@@ -58,7 +58,7 @@ const TweetList = (prop: TweetListProp) => {
           tweets.map((data:TweetInterface, index:number) => {
             return (
               <Tweet
-                key={index}
+                key={`Tweet.${index}`}
                 created_at={data.created_at.replace('T', ' ').replace('Z', '')}
                 name={data.name}
                 sentence={data.sentence}
@@ -75,7 +75,7 @@ const TweetList = (prop: TweetListProp) => {
           dummyDatas.map((data:TweetInterface, index:number) => {
             return (
               <Tweet
-                key={index}
+                key={`Tweet.${index}`}
                 created_at={data.created_at}
                 name={data.name}
                 sentence={data.sentence}
@@ -90,7 +90,7 @@ const TweetList = (prop: TweetListProp) => {
 
 const Wrapper = styled.div`
   margin: 3vh auto;
-  width: 80%
+  width: 80%;
 `;
 const DateWrapper = styled.div`
   margin: 0.2vh 0;
