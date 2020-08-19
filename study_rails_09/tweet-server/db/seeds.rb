@@ -26,3 +26,6 @@ zidane.tweets.create([
     { sentence: "誰かを助けるのに理由がいるかい？" },
     { sentence: "勝負がついてもお互いの命があったんだ。それで充分だろ？" },
 ])
+FollowRelationship.create({ follower_id: zidane.id, followed_id: admin.id })
+FollowRelationship.create({ follower_id: moguo.id, followed_id: admin.id })
+FollowRelationship.create({ follower_id: moguo.id, followed_id: zidane.id })
