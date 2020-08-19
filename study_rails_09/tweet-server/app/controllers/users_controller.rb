@@ -19,11 +19,11 @@ class UsersController < ApplicationController
 
   def show
     if params[:user_id]
-      @user = User.find(params[:user_id])
+      @users = User.find(params[:user_id])
     else
       @users = User.all
     end
-    render json: @user
+    render json: @users
   end
 
   private

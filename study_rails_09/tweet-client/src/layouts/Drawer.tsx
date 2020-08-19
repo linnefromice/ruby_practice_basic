@@ -51,6 +51,7 @@ const UnauthenticatedMenu = () => {
         <Buttons>
             <MarginLinkButton label="Top" link_to="/home"/>
             <MarginLinkButton label="Tweet" link_to="/tweet/list"/>
+            <MarginLinkButton label="User" link_to="/user/list"/>
             <MarginLinkButton label="Sign In" link_to="/sign_in"/>
             <MarginLinkButton label="Sign Up" link_to="/sign_up"/>
         </Buttons>
@@ -66,6 +67,7 @@ const AuthenticatedMenu = (prop: AuthenticatedMenuProp) => {
             <Buttons>
                 <MarginLinkButton label="Top" link_to="/home"/>
                 <MarginLinkButton label="Tweet" link_to="/tweet/list"/>
+                <MarginLinkButton label="User" link_to="/user/list"/>
                 <DrawerButton label="Logout" onClick={prop.onClick}/>
             </Buttons>
         </div>

@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useContext } from "react"
+import styled from "styled-components"
 import axios from "axios"
 
-import { UserContext } from '../../global/contexts';
-import CreateTweet from '../../components/tweet/CreateTweet';
+import { UserContext } from '../../global/contexts'
+import CreateTweet from '../../components/tweet/CreateTweet'
 
 interface TweetInterface {
   sentence:string,

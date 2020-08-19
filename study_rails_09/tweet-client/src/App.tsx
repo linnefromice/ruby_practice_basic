@@ -10,6 +10,7 @@ import UserInterface from './models/UserInterface';
 import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
+import UserIndex from './layouts/user/UserIndex';
 import SignIn from './layouts/auth/SignIn';
 import SignUp from './layouts/auth/SignUp';
 
@@ -38,6 +39,9 @@ const Main = () => {
       </Route>
       <Route path="/tweet/list">
         <TweetIndex/>
+      </Route>
+      <Route path="/user/list">
+        <UserIndex/>
       </Route>
       <Route path="/sign_in">
         <SignIn/>
