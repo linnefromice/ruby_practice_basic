@@ -5,10 +5,77 @@ import axios from "axios"
 import { UserContext } from '../../global/contexts'
 
 const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+`;
+const IconArea = styled.div`
+  margin: 0 2.5%;
+  width: 20vh;
+  height: 20vh;
+  border-radius: 10vh;
+  background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4);
+  box-shadow: 4px 4px lightgray;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: white;
+  font-size: 4.0rem;
+  font-weight: bold;
+`;
+const ContentArea = styled.div`
+  margin: 0 2.5%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  white-space: nowrap;
+`;
+const NameArea = styled.div`
+  margin: 2% 0;
+  color: gray;
+  font-size: 2.0rem;
+  font-weight: bold;
+`;
+const CommonArea = styled.div`
+  margin: 2% 0;
+  color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: row;
+`;
+const Label = styled.div`
+  margin: 0 2%;
+  text-decoration: underline;
+`;
+const Value = styled.div`
+  margin: 0 2%;
+`;
+const FollowArea = styled.div`
+  margin: 0 1vw;
+  padding: 0 2.5vw;
+  background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+  border-radius: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+const FollowLabel = styled.div`
+  margin: 1% 0;
+  text-align: center;
+`;
+const FollowValue = styled.div`
+  margin: 1% 0;
+  font-weight: bold;
+  text-align: center;
 `;
 interface ProfileInterface {
   name: string
@@ -23,13 +90,40 @@ interface ProfileInterface {
 const Profile = (prop:ProfileInterface) => {
     return (
         <Wrapper>
-            <div>{prop.name}</div>
-            <div>{prop.email}</div>
-            <div>{prop.description}</div>
-            <div>{prop.follower_count} / {prop.following_count}</div>
-            <div>{prop.portfolio_url}</div>
-            <div>{prop.facebook_url}</div>
-            <div>{prop.instagram_url}</div>
+            <IconArea>{prop.name.charAt(0)}</IconArea>
+            <ContentArea>
+                <NameArea>{prop.name}</NameArea>
+                <CommonArea>
+                    <Label>EMAIL</Label>
+                    <Value>{prop.email}</Value>
+                </CommonArea>
+                <CommonArea>
+                    <Label>DESCRIPTION</Label>
+                    <Value>{prop.description}</Value>
+                </CommonArea>
+                <CommonArea>
+                    <FollowArea>
+                        <FollowLabel>Followers</FollowLabel>
+                        <FollowValue>{prop.follower_count}</FollowValue>
+                    </FollowArea>
+                    <FollowArea>
+                        <FollowLabel>Followees</FollowLabel>
+                        <FollowValue>{prop.following_count}</FollowValue>
+                    </FollowArea>
+                </CommonArea>
+                <CommonArea>
+                    <Label>Portfolio</Label>
+                    <Value>{prop.portfolio_url}</Value>
+                </CommonArea>
+                <CommonArea>
+                    <Label>Facebook</Label>
+                    <Value>{prop.facebook_url}</Value>
+                </CommonArea>
+                <CommonArea>
+                    <Label>Instagram</Label>
+                    <Value>{prop.facebook_url}</Value>
+                </CommonArea>
+            </ContentArea>
         </Wrapper>
     )
 }
@@ -52,6 +146,7 @@ const Title = styled.div`
 `;
 const Body = styled.div`
   width: 100%;
+  height: 75%;
 `;
 
 // https://agentestudio.com/blog/design-user-profile-page <- "Social media user profile"
