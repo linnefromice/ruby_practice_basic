@@ -11,6 +11,7 @@ import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
 import UserIndex from './layouts/user/UserIndex';
+import ProfileIndex from './layouts/profile/ProfileIndex';
 import SignIn from './layouts/auth/SignIn';
 import SignUp from './layouts/auth/SignUp';
 
@@ -34,20 +35,23 @@ const MainContainer = styled.div`
 const Main = () => {
   return (
     <Switch>
-      <Route exact path="/home">
-        <p>HOME SCREEN</p>
-      </Route>
-      <Route path="/tweet/list">
+      <Route exact path="/tweet/list">
         <TweetIndex/>
       </Route>
       <Route path="/user/list">
         <UserIndex/>
+      </Route>
+      <Route path="/profile">
+        <ProfileIndex/>
       </Route>
       <Route path="/sign_in">
         <SignIn/>
       </Route>
       <Route path="/sign_up">
         <SignUp/>
+      </Route>
+      <Route path="/about">
+        <div>About Page</div>
       </Route>
     </Switch>
   )
