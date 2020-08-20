@@ -29,8 +29,8 @@ const dummyDatas = [
     },
 ];
 
-// http://localhost:3001/users/detail/:id を利用
-// following, followers にそれぞれuseStateを使う
+// Q.未ログインユーザーにはUserの表のカラムを出さないようにしたい
+// Q.Follow自体の機能と、ボタンをクリックしたらフォローするようにしたい
 const UserList = () => {
     const { user, isLogin } = useContext(UserContext);
     const [users, setUsers] = useState<UserInterface[]>([])
@@ -58,8 +58,6 @@ const UserList = () => {
     useEffect(() => {
         fetchUsers()
         if (isLogin) fetchDetail(user.id)
-        console.log(`following = ${following}`)
-        console.log(`followed = ${followed}`)
     }, [])
 
     if (users !== null && users.length !== 0) {

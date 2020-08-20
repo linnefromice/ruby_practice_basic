@@ -67,6 +67,7 @@ const AuthenticatedMenu = (prop: AuthenticatedMenuProp) => {
             <Buttons>
                 <MarginLinkButton label="Tweet" link_to="/tweet/list"/>
                 <MarginLinkButton label="User" link_to="/user/list"/>
+                <MarginLinkButton label="Profile" link_to="/profile"/>
                 <DrawerButton label="Logout" onClick={prop.onClick}/>
                 <MarginLinkButton label="About" link_to="/about"/>
             </Buttons>
