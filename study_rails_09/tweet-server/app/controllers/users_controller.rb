@@ -26,6 +26,21 @@ class UsersController < ApplicationController
     render json: @users
   end
 
+  def detail
+    if params[:id]
+      @user = User.find(params[:id])
+      render json: {
+          id: @user.id,
+          name: @user.name,
+          email: @user.email,
+          following: @user.following.ids,
+          followers: @user.followers.ids
+      }
+    else
+      render json: { errors: ["Get details Failed ..."] }, status: 400
+    end
+  end
+
   private
   def user_params
     params.permit(:name, :email, :password, :password_confirmation)

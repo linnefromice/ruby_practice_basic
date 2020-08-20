@@ -47,6 +47,8 @@ bin/rails g model Tweet sentence:string user:references
 ### CONFIRM -> User.first.authenticate("password")
 bin/rails generate controller Tweets
 bin/rails db:seed
+bin/rails g model FollowRelationship follower_id:integer followed_id:integer
+bin/rails generate controller FollowRelationship
 ```
 
 - add test framework (rspec)

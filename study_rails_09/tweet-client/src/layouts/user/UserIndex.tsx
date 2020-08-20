@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import axios from "axios"
 
+import { UserContext } from '../../global/contexts'
 import UserInterface from "../../models/UserInterface"
 
 // UserList
@@ -28,8 +29,13 @@ const dummyDatas = [
     },
 ];
 
+// http://localhost:3001/users/detail/:id を利用
+// following, followers にそれぞれuseStateを使う
 const UserList = () => {
+    const { user, isLogin } = useContext(UserContext);
     const [users, setUsers] = useState<UserInterface[]>([])
+    const [following, setFollowing] = useState<number[]>([])
+    const [followed, setFollowed] = useState<number[]>([])
 
     const fetchUsers = () => {
         axios.get('http://localhost:3001/users')
@@ -39,8 +45,21 @@ const UserList = () => {
         .catch(err => console.log(err))
     }
 
+    const fetchDetail = (id:number) => {
+        axios.get(`http://localhost:3001/users/detail/${id}`)
+        .then(res => {
+            console.log(res)
+            setFollowing(res.data.following)
+            setFollowed(res.data.followers)
+        })
+        .catch(err => console.log(err))
+    }
+
     useEffect(() => {
         fetchUsers()
+        if (isLogin) fetchDetail(user.id)
+        console.log(`following = ${following}`)
+        console.log(`followed = ${followed}`)
     }, [])
 
     if (users !== null && users.length !== 0) {
@@ -48,12 +67,15 @@ const UserList = () => {
             <div>
                 {
                     users.map((data:UserInterface, index:number) => {
+                        if (user.id === data.id) return
+                        const isFollowing = following.includes(data.id)
+                        const isFollowee = followed.includes(data.id)
                         return(
                             <User
                                 key={`User.${index}`}
-                                id={data.id}
-                                email={data.email}
                                 name={data.name}
+                                isFollowing={isFollowing}
+                                isFollowee={isFollowee}
                             />
                         )
                     })
@@ -68,9 +90,9 @@ const UserList = () => {
                         return(
                             <User
                                 key={`User.${index}`}
-                                id={data.id}
-                                email={data.email}
                                 name={data.name}
+                                isFollowing={false}
+                                isFollowee={false}
                             />
                         )
                     })
@@ -158,12 +180,17 @@ const LinkIcon = styled.div`
   width: 5%;
   color: #646464;
 `;
-const User = (prop: UserInterface) => {
-  const FollowStatus = prop.id % 2 !== 0
+interface UserInterfaceForListDisplay {
+    name: string
+    isFollowing: boolean
+    isFollowee: boolean
+}
+const User = (prop: UserInterfaceForListDisplay) => {
+  const FollowStatus = prop.isFollowing
       ? <NowFollowStatus>Following</NowFollowStatus>
       : <NotFollowStatus>Follow Now?</NotFollowStatus>
 
-  const FollowBackStatus = prop.id % 2 !== 0
+  const FollowBackStatus = prop.isFollowee
       ? <NowFollowBackStatus>Followee Now!</NowFollowBackStatus>
       : <NotFollowBackStatus>No Followee...</NotFollowBackStatus>
 
