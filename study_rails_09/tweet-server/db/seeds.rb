@@ -42,9 +42,9 @@ zidane.create_profile({
     location: "Lindblum",
 })
 admin.user_urls.create([
-   { site_name: "portfolio", url: "https://linnefromice-portfolio.web.app/" },
+   { site_name: "portfolio", url: "https://linnefromice-portfolio.web.app" },
    { site_name: "facebook", url: "https://www.facebook.com/facebookappJapan" },
-   { site_name: "instagram", url: "https://www.instagram.com/instagram/" },
+   { site_name: "instagram", url: "https://www.instagram.com/instagram" },
 ])
 zidane.user_urls.create([
    { site_name: "portfolio", url: "https://www.jp.square-enix.com/ff9/characters/zidane.html" },

@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Profile, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "# about model's field" do
+    let!(:profile) { create(:profile) }
+    context 'when with minimum data' do
+      it 'should be valid' do
+        expect(profile).to be_valid
+      end
+    end
+  end
 end
