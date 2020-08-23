@@ -88,6 +88,26 @@ interface ProfileInterface {
   instagram_url: string,
 }
 const Profile = (prop:ProfileInterface) => {
+    console.log(prop)
+    const PortfolioUrlArea = (prop.portfolio_url === undefined || prop.portfolio_url === "") ? null : (
+      <CommonArea>
+        <Label>Portfolio</Label>
+        <Value>{prop.portfolio_url}</Value>
+      </CommonArea>
+    )
+    const FaceBookUrlArea = (prop.facebook_url === undefined || prop.facebook_url === "") ? null : (
+       <CommonArea>
+        <Label>Facebook</Label>
+        <Value>{prop.facebook_url}</Value>
+      </CommonArea>
+    )
+    const InstagramUrlArea = (prop.instagram_url !== undefined || prop.instagram_url !== "") ? null : (
+      <CommonArea>
+        <Label>Instagram</Label>
+        <Value>{prop.instagram_url}</Value>
+      </CommonArea>
+    )
+
     return (
         <Wrapper>
             <IconArea>{prop.name.charAt(0)}</IconArea>
@@ -111,18 +131,9 @@ const Profile = (prop:ProfileInterface) => {
                         <FollowValue>{prop.following_count}</FollowValue>
                     </FollowArea>
                 </CommonArea>
-                <CommonArea>
-                    <Label>Portfolio</Label>
-                    <Value>{prop.portfolio_url}</Value>
-                </CommonArea>
-                <CommonArea>
-                    <Label>Facebook</Label>
-                    <Value>{prop.facebook_url}</Value>
-                </CommonArea>
-                <CommonArea>
-                    <Label>Instagram</Label>
-                    <Value>{prop.facebook_url}</Value>
-                </CommonArea>
+                {PortfolioUrlArea}
+                {FaceBookUrlArea}
+                {InstagramUrlArea}
             </ContentArea>
         </Wrapper>
     )
@@ -149,7 +160,6 @@ const Body = styled.div`
   height: 75%;
 `;
 
-// https://agentestudio.com/blog/design-user-profile-page <- "Social media user profile"
 const dummyData = {
     name: "Moguo",
     email: "moguo@mognet.com",
