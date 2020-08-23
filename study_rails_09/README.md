@@ -48,7 +48,9 @@ bin/rails g model Tweet sentence:string user:references
 bin/rails generate controller Tweets
 bin/rails db:seed
 bin/rails g model FollowRelationship follower_id:integer followed_id:integer
-bin/rails generate controller FollowRelationship
+bin/rails g controller FollowRelationship
+bin/rails g model Profile user:references description:string age:int birthday:string company:string location:string
+bin/rails g model UserUrl user:references site_name:string url:string
 ```
 
 - add test framework (rspec)

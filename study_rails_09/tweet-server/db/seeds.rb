@@ -26,6 +26,29 @@ zidane.tweets.create([
     { sentence: "誰かを助けるのに理由がいるかい？" },
     { sentence: "勝負がついてもお互いの命があったんだ。それで充分だろ？" },
 ])
+admin.create_profile({
+    description: "This service's administrator / Please ask me anything！",
+    location: "Global"
+})
+moguo.create_profile({
+    description: "Moogle / Helping travelers to provide save point & rest",
+    birthday: "unknown",
+    location: "unknown"
+})
+zidane.create_profile({
+    description: "Thief / Actor of Tantalus Theater Troupe",
+    age: 16,
+    birthday: "September, 1783",
+    location: "Lindblum",
+})
+admin.user_urls.create([
+   { site_name: "portfolio", url: "https://linnefromice-portfolio.web.app/" },
+   { site_name: "facebook", url: "https://www.facebook.com/facebookappJapan" },
+   { site_name: "instagram", url: "https://www.instagram.com/instagram/" },
+])
+zidane.user_urls.create([
+   { site_name: "portfolio", url: "https://www.jp.square-enix.com/ff9/characters/zidane.html" },
+])
 FollowRelationship.create({ follower_id: zidane.id, followed_id: admin.id })
 FollowRelationship.create({ follower_id: moguo.id, followed_id: admin.id })
 FollowRelationship.create({ follower_id: moguo.id, followed_id: zidane.id })

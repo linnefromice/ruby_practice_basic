@@ -29,13 +29,7 @@ class UsersController < ApplicationController
   def detail
     if params[:id]
       @user = User.find(params[:id])
-      render json: {
-          id: @user.id,
-          name: @user.name,
-          email: @user.email,
-          following: @user.following.ids,
-          followers: @user.followers.ids
-      }
+      render json: create_response(@user)
     else
       render json: { errors: ["Get details Failed ..."] }, status: 400
     end
@@ -44,5 +38,22 @@ class UsersController < ApplicationController
   private
   def user_params
     params.permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def create_response(user)
+    res = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        following: @user.following.ids,
+        followers: @user.followers.ids,
+        description: "",
+        urls: {}
+    }
+    res[:description] = user.profile.description if user.profile
+    if user.user_urls
+      user.user_urls.map { |user_url| res[:urls][user_url.site_name] = user_url.url }
+    end
+    res
   end
 end

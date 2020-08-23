@@ -10,13 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_19_161128) do
+ActiveRecord::Schema.define(version: 2020_08_23_074337) do
 
   create_table "follow_relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "description"
+    t.integer "age"
+    t.string "birthday"
+    t.string "company"
+    t.string "location"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "tweets", force: :cascade do |t|
@@ -27,6 +39,15 @@ ActiveRecord::Schema.define(version: 2020_08_19_161128) do
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
+  create_table "user_urls", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "site_name"
+    t.string "url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_user_urls_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -35,5 +56,7 @@ ActiveRecord::Schema.define(version: 2020_08_19_161128) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "profiles", "users"
   add_foreign_key "tweets", "users"
+  add_foreign_key "user_urls", "users"
 end
