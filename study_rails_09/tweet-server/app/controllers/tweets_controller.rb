@@ -10,6 +10,16 @@ class TweetsController < ApplicationController
     render json: Tweet.eager_load(:user).select("tweets.*, users.name").order(id: :desc)
   end
 
+  def detail
+    if params[:id]
+      render json: Tweet.eager_load(:user).select("tweets.*, users.name").find(params[:id])
+    else
+      render json: { errors: ["Get details Failed ..."] }, status: 400
+    end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ["Get details Failed ..."] }, status: 400
+  end
+
   def create
     if params[:user_id]
       User.find(params[:user_id]).tweets.create!(sentence: params[:sentence])

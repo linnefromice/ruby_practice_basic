@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   post '/sign_up', to: 'users#sign_up'
   get '/users/detail/:id', to: 'users#detail'
   resource :users, :only => [:show]
+  get '/tweets/detail/:id', to: 'tweets#detail'
   resource :tweets
 end
