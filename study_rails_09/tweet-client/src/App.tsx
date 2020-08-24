@@ -10,6 +10,7 @@ import UserInterface from './models/UserInterface';
 import { UserContext } from './global/contexts';
 import Drawer from './layouts/Drawer';
 import TweetIndex from './layouts/tweet/TweetIndex';
+import TweetDetail from './layouts/tweet/TweetDetail';
 import UserIndex from './layouts/user/UserIndex';
 import ProfileIndex from './layouts/profile/ProfileIndex';
 import SignIn from './layouts/auth/SignIn';
@@ -38,6 +39,7 @@ const Main = () => {
       <Route exact path="/tweet/list">
         <TweetIndex/>
       </Route>
+      <Route path="/tweet/detail/:id" component={TweetDetail}/>
       <Route path="/user/list">
         <UserIndex/>
       </Route>

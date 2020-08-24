@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react"
 import styled from "styled-components"
 import axios from "axios"
+import { Link } from "react-router-dom";
 
 import { UserContext } from '../../global/contexts'
 import TweetInterface from '../../models/TweetInterface'
@@ -9,16 +10,19 @@ import CreateTweet from '../../components/tweet/CreateTweet'
 
 const dummyDatas = [
   {
+    id: 3,
     sentence: "バルサまた負けた...デンベレ帰ってきてー",
     name: "恋する凡人",
     created_at: "2020.08.01",
   },
   {
+    id: 2,
     sentence: "最初のツイート。",
     name: "恋する凡人",
     created_at: "2020.07.29",
   },
   {
+    id: 1,
     sentence: "Welcome! Everyone is waiting for your first tweet!",
     name: "Operator",
     created_at: "2020.07.28",
@@ -55,6 +59,7 @@ const TweetList = (prop: TweetListProp) => {
             return (
               <TweetWrapper
                 key={`Tweet.${index}`}
+                id={data.id}
                 created_at={data.created_at.replace('T', ' ').replace('Z', '')}
                 name={data.name}
                 sentence={data.sentence}
@@ -72,6 +77,7 @@ const TweetList = (prop: TweetListProp) => {
             return (
               <TweetWrapper
                 key={`Tweet.${index}`}
+                id={data.id}
                 created_at={data.created_at}
                 name={data.name}
                 sentence={data.sentence}
@@ -109,10 +115,15 @@ const LinkIcon = styled.div`
   width: 5%;
   color: #646464;
 `;
+const CustomLink = styled(Link)`
+    text-decoration: none;
+`;
+
 const TweetWrapper = (prop: TweetInterface) => {
   return (
     <Wrapper>
       <TweetComponent
+        id={prop.id}
         created_at={prop.created_at}
         name={prop.name}
         sentence={prop.sentence}
@@ -120,7 +131,9 @@ const TweetWrapper = (prop: TweetInterface) => {
       <Row>
         <BottomLine/>
         <LinkTitle>Read More</LinkTitle>
-        <LinkIcon>></LinkIcon>
+        <LinkIcon>
+          <CustomLink to={`/tweet/detail/${prop.id}`}>></CustomLink>
+        </LinkIcon>
       </Row>
     </Wrapper>
   )
