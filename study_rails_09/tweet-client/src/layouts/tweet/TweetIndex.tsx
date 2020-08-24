@@ -3,13 +3,9 @@ import styled from "styled-components"
 import axios from "axios"
 
 import { UserContext } from '../../global/contexts'
+import TweetInterface from '../../models/TweetInterface'
+import TweetComponent from '../../components/tweet/TweetComponent'
 import CreateTweet from '../../components/tweet/CreateTweet'
-
-interface TweetInterface {
-  sentence:string,
-  name:string,
-  created_at:string,
-}
 
 const dummyDatas = [
   {
@@ -57,7 +53,7 @@ const TweetList = (prop: TweetListProp) => {
         {
           tweets.map((data:TweetInterface, index:number) => {
             return (
-              <Tweet
+              <TweetWrapper
                 key={`Tweet.${index}`}
                 created_at={data.created_at.replace('T', ' ').replace('Z', '')}
                 name={data.name}
@@ -74,7 +70,7 @@ const TweetList = (prop: TweetListProp) => {
         {
           dummyDatas.map((data:TweetInterface, index:number) => {
             return (
-              <Tweet
+              <TweetWrapper
                 key={`Tweet.${index}`}
                 created_at={data.created_at}
                 name={data.name}
@@ -91,21 +87,6 @@ const TweetList = (prop: TweetListProp) => {
 const Wrapper = styled.div`
   margin: 3vh auto;
   width: 80%;
-`;
-const DateWrapper = styled.div`
-  margin: 0.2vh 0;
-  font-size: 1.25rem;
-  font-weight: bold;
-`;
-const UsernameWrapper = styled.div`
-  margin: 0.2vh 0;
-  font-size: 1.25rem;
-  color: #646464;
-  text-decoration: underline;
-`;
-const SentenceWrapper = styled.div`
-  margin: 0.2vh 0;
-  color: #646464;
 `;
 const Row = styled.div`
   margin: 0.2vh 0;
@@ -128,12 +109,14 @@ const LinkIcon = styled.div`
   width: 5%;
   color: #646464;
 `;
-const Tweet = (prop: TweetInterface) => {
+const TweetWrapper = (prop: TweetInterface) => {
   return (
     <Wrapper>
-      <DateWrapper>{prop.created_at}</DateWrapper>
-      <UsernameWrapper>{prop.name}</UsernameWrapper>
-      <SentenceWrapper>{prop.sentence}</SentenceWrapper>
+      <TweetComponent
+        created_at={prop.created_at}
+        name={prop.name}
+        sentence={prop.sentence}
+      />
       <Row>
         <BottomLine/>
         <LinkTitle>Read More</LinkTitle>
