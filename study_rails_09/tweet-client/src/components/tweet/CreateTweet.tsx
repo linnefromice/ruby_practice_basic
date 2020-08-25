@@ -44,8 +44,10 @@ const SubmitButton = styled.div`
     background-color: #646464;
   }
 `;
-
-const CreateTweet = () => {
+interface CreateTweetProp {
+  setIsNeedReload: React.Dispatch<React.SetStateAction<boolean>>
+}
+const CreateTweet = (prop: CreateTweetProp) => {
   const { user } = useContext(UserContext)
   const [sentence, setSentence] = useState<string>("")
   const [errors, setErrors] = useState<string[]>([])
@@ -62,6 +64,7 @@ const CreateTweet = () => {
     })
     .then(res => {
       console.log(res)
+      prop.setIsNeedReload(true)
     })
     .catch(err => {
       console.log(err.response)

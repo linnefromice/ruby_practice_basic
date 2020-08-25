@@ -31,6 +31,8 @@ const dummyDatas = [
 
 interface TweetListProp {
   isOnlyOwn: boolean
+  isNeedReload: boolean
+  setIsNeedReload: React.Dispatch<React.SetStateAction<boolean>>
 }
 const TweetList = (prop: TweetListProp) => {
   const { isLogin, user } = useContext(UserContext);
@@ -49,7 +51,8 @@ const TweetList = (prop: TweetListProp) => {
 
   useEffect(() => {
     fetchTweets()
-  }, [prop.isOnlyOwn])
+    prop.setIsNeedReload(false)
+  }, [prop.isOnlyOwn, prop.isNeedReload])
 
   if (tweets.length !== 0) {
     return (
@@ -198,6 +201,7 @@ const Body = styled.div`
 `;
 const TweetIndex = () => {
   const [isOnlyOwn, setIsOnlyOwn] = useState<boolean>(false)
+  const [isNeedReload, setIsNeedReload] = useState<boolean>(false)
   const { isLogin } = useContext(UserContext);
 
   return (
@@ -209,11 +213,15 @@ const TweetIndex = () => {
         { isLogin ?
           <div>
             <FocusedTweetToggleButton isOnlyOwn={isOnlyOwn} setIsOnlyOwn={setIsOnlyOwn}/>
-            <CreateTweet/>
+            <CreateTweet setIsNeedReload={setIsNeedReload}/>
           </div>
           : null
         }
-        <TweetList isOnlyOwn={isOnlyOwn} />
+        <TweetList
+          isOnlyOwn={isOnlyOwn}
+          isNeedReload={isNeedReload}
+          setIsNeedReload={setIsNeedReload}
+        />
       </Body>
     </TopWrapper>
   )
