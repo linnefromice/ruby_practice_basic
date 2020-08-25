@@ -30,6 +30,8 @@ class TweetsController < ApplicationController
     @tweet = Tweet.find(params[:id])
     @tweet.update_attributes(sentence: params[:sentence])
     render json: @tweet
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ["Update Failed ..."] }, status: 400
   end
 
   def delete

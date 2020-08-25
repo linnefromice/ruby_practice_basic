@@ -22,7 +22,7 @@ const TweetComponentWrapper = styled.div`
     justify-content: center;
     align-items: center;
 `
-const ButtonsArea = styled.div`
+const EditArea = styled.div`
     width: 100%;
     margin: 1vh 0;
     display: flex;
@@ -30,9 +30,17 @@ const ButtonsArea = styled.div`
     align-items: center;
     flex-direction: row;
 `
-const ModifyButton = styled.div`
-    width: 40%;
-    margin: 0 5%;
+const InputForUpdate = styled.input`
+  width: 40vw;
+  height: 3vh;
+  margin: 0 2%;
+  border: none;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 2px #ccc;
+`
+const UpdateButton = styled.div`
+    width: 20%;
+    margin: 0 2%;
     height: 3vh;
     border-radius: 6vw;
     color: white;
@@ -42,7 +50,7 @@ const ModifyButton = styled.div`
     align-items: center;
 `
 const DeleteButton = styled.div`
-    width: 40%;
+    width: 20%;
     margin: 0 5%;
     height: 3vh;
     border-radius: 6vw;
@@ -53,6 +61,20 @@ const DeleteButton = styled.div`
     align-items: center;
 `
 const BodyContent = (prop:TweetInterface) => {
+    const [newSentence, setNewSentence] = useState<string>("")
+
+    function onChangeNewSentence(e: React.ChangeEvent<HTMLInputElement>) {
+        setNewSentence(e.target.value)
+      }    
+
+    function updateTweet() {
+        axios.put('http://localhost:3001/tweets/', {
+            id: prop.id,
+            sentence: newSentence
+        })
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
 
     function deleteTweet() {
         axios.delete(`http://localhost:3001/tweets/${prop.id}`)
@@ -71,10 +93,15 @@ const BodyContent = (prop:TweetInterface) => {
                         sentence={prop.sentence}
                     />
                 </TweetComponentWrapper>
-                <ButtonsArea>
-                    <ModifyButton>MODIFY</ModifyButton>
+                <EditArea>
+                    <InputForUpdate
+                        placeholder="Please input new sentence!"
+                        value={newSentence}
+                        onChange={onChangeNewSentence}            
+                    />
+                    <UpdateButton onClick={updateTweet}>MODIFY</UpdateButton>
                     <DeleteButton onClick={deleteTweet}>DELETE</DeleteButton>
-                </ButtonsArea>
+                </EditArea>
             </MainTweetArea>
         </BodyWrapper>
     )
