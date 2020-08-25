@@ -32,12 +32,18 @@ class TweetsController < ApplicationController
     render json: @tweet
   end
 
-  def destroy
+  def delete
     @tweet = Tweet.find(params[:id])
     if @tweet.destroy
       head :no_content, status: :ok
     else
       render json: @tweet.errors, status: :unprocessable_entity
     end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ["Delete Failed ..."] }, status: 400
+  end
+
+  def destroy
+    # do nothing.
   end
 end

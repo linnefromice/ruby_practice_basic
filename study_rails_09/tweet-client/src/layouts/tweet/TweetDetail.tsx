@@ -53,6 +53,13 @@ const DeleteButton = styled.div`
     align-items: center;
 `
 const BodyContent = (prop:TweetInterface) => {
+
+    function deleteTweet() {
+        axios.delete(`http://localhost:3001/tweets/${prop.id}`)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+
     return (
         <BodyWrapper>
             <MainTweetArea>
@@ -66,7 +73,7 @@ const BodyContent = (prop:TweetInterface) => {
                 </TweetComponentWrapper>
                 <ButtonsArea>
                     <ModifyButton>MODIFY</ModifyButton>
-                    <DeleteButton>DELETE</DeleteButton>
+                    <DeleteButton onClick={deleteTweet}>DELETE</DeleteButton>
                 </ButtonsArea>
             </MainTweetArea>
         </BodyWrapper>
