@@ -38,59 +38,101 @@ const InputForUpdate = styled.input`
   border-radius: 4px;
   box-shadow: inset 0 1px 2px #ccc;
 `
-const UpdateButton = styled.div`
+const BaseUpdateButton = styled.div`
     width: 20%;
     margin: 0 2%;
     height: 3vh;
     border-radius: 6vw;
     color: white;
-    background-color: lightgreen;
     display: flex;
     justify-content: center;
     align-items: center;
 `
-const DeleteButton = styled.div`
+const ActiveUpdateButton = styled(BaseUpdateButton)`
+    background-color: lightgreen;
+    &:hover {
+        border: 1px solid lime;
+        background-color: lime;
+    }
+`
+const DisabledUpdateButton = styled(BaseUpdateButton)`
+    background-color: gray;
+`
+const BaseDeleteButton = styled.div`
     width: 20%;
     margin: 0 5%;
     height: 3vh;
     border-radius: 6vw;
     color: white;
-    background-color: lightcoral;
     display: flex;
     justify-content: center;
     align-items: center;
 `
+const ActiveDeleteButton = styled(BaseDeleteButton)`
+    background-color: lightsalmon;
+    &:hover {
+        border: 1px solid salmon;
+        background-color: salmon;
+    }
+`
+const DisabledDeleteButton = styled(BaseDeleteButton)`
+    background-color: gray;
+`
+
 const BodyContent = (prop:TweetInterface) => {
+    const [isDeleted, setIsDeleted] = useState<boolean>(false)
+    const [tweet, setTweet] = useState<TweetInterface>(prop)
     const [newSentence, setNewSentence] = useState<string>("")
 
     function onChangeNewSentence(e: React.ChangeEvent<HTMLInputElement>) {
         setNewSentence(e.target.value)
-      }    
+    }
+    
+    const fetchTweet = () => {
+      axios.get(`http://localhost:3001/tweets/detail/${tweet.id}`)
+      .then(result => {
+        setTweet(result.data)
+      })
+      .catch(err => console.log(err))
+    }
 
     function updateTweet() {
         axios.put('http://localhost:3001/tweets/', {
             id: prop.id,
             sentence: newSentence
         })
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            fetchTweet()
+        })
         .catch(err => console.log(err))
     }
 
     function deleteTweet() {
         axios.delete(`http://localhost:3001/tweets/${prop.id}`)
-        .then(res => console.log(res))
+        .then(res => {
+            console.log(res)
+            setIsDeleted(true)
+        })
         .catch(err => console.log(err))
     }
+
+    const UpdateButton = isDeleted
+        ? <DisabledUpdateButton>UPDATE</DisabledUpdateButton>
+        : <ActiveUpdateButton onClick={updateTweet}>UPDATE</ActiveUpdateButton>
+    const DeleteButton = isDeleted
+        ? <DisabledDeleteButton>DELETE</DisabledDeleteButton>
+        : <ActiveDeleteButton onClick={deleteTweet}>DELETE</ActiveDeleteButton>
 
     return (
         <BodyWrapper>
             <MainTweetArea>
                 <TweetComponentWrapper>
                     <TweetComponent
-                        id={prop.id}
-                        created_at={prop.created_at}
-                        name={prop.name}
-                        sentence={prop.sentence}
+                        id={tweet.id}
+                        created_at={tweet.created_at.replace('T', ' ').replace('Z', '')}
+                        name={tweet.name}
+                        sentence={tweet.sentence}
                     />
                 </TweetComponentWrapper>
                 <EditArea>
@@ -99,8 +141,8 @@ const BodyContent = (prop:TweetInterface) => {
                         value={newSentence}
                         onChange={onChangeNewSentence}            
                     />
-                    <UpdateButton onClick={updateTweet}>MODIFY</UpdateButton>
-                    <DeleteButton onClick={deleteTweet}>DELETE</DeleteButton>
+                    {UpdateButton}
+                    {DeleteButton}
                 </EditArea>
             </MainTweetArea>
         </BodyWrapper>
@@ -153,7 +195,7 @@ const TweetDetail = (prop:any) => {
 
     const Body = tweet !== undefined ? <BodyContent
         id={tweet_id}
-        created_at={tweet.created_at.replace('T', ' ').replace('Z', '')}
+        created_at={tweet.created_at}
         name={tweet.name}
         sentence={tweet.sentence}
     /> : <Error/>
