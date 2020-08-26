@@ -31,6 +31,7 @@ const MainContainer = styled.div`
   width: 85%;
   background-color: white;
   color: black;
+  overflow: scroll;
 `;
 
 const Main = () => {
