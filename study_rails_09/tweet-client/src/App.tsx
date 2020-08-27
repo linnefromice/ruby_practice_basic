@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
   BrowserRouter as Router,
@@ -60,9 +60,20 @@ const Main = () => {
   )
 };
 
+const sessionKey = 'tweet-app-session-key'
 function App() {
   const [isLogin, setIsLogin] = useState(false)
   const [user, setUser] = useState<UserInterface>({ id: 0, email: "", name: "" })
+  
+  useEffect(() => {
+    const session = window.sessionStorage.getItem(sessionKey) // セッション取得
+    if (session) {
+      console.log(`session exists: session = ${session}`)
+      const user = JSON.parse(session)
+      setUser(user)
+      setIsLogin(true)
+    }
+  }, [])
 
   return (
     <UserContext.Provider value={{isLogin, setIsLogin, user, setUser}}>

@@ -101,6 +101,7 @@ const UserInfo = (prop: UserInfoProp) => {
     )
 }
 
+const sessionKey = 'tweet-app-session-key'
 const Drawer = () => {
     const { isLogin, setIsLogin, user, setUser } = useContext(UserContext);
     let history = useHistory();
@@ -108,6 +109,7 @@ const Drawer = () => {
     const logout = () => {
         setIsLogin(false)
         setUser({ id: 0, email: "", name: "" })
+        window.sessionStorage.removeItem(sessionKey)
         history.push("/home");
     }
 

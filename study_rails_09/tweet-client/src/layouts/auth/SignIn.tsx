@@ -8,6 +8,7 @@ import ErrorModal from '../../components/common/ErrorModal';
 const INITIAL_ACCOUNT_EMAIL = 'moguo@mognet.com' // for debug
 const INITIAL_ACCOUNT_PASSWORD = 'password' // for debug
 
+const sessionKey = 'tweet-app-session-key'
 const Form = () => {
   const {isLogin, setIsLogin, user, setUser} = useContext(UserContext)
   const [formEmail, setFormEmail] = useState<string>(INITIAL_ACCOUNT_EMAIL)
@@ -32,12 +33,14 @@ const Form = () => {
       password: formPassword
     }).then(res => {
       console.log(res)
-      setIsLogin(true)
-      setUser({
+      const authenticated_user = {
         id: res.data.id,
         email: res.data.email,
         name: res.data.name
-      })
+      }
+      setIsLogin(true)
+      setUser(authenticated_user)
+      window.sessionStorage.setItem(sessionKey, JSON.stringify(authenticated_user)) // セッション保持
     }).catch(err => {
       console.log(err.response)
       setIsLogin(false)
