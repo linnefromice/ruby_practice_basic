@@ -24,6 +24,8 @@ class UsersController < ApplicationController
       @users = User.all
     end
     render json: @users
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ["Get users Failed ..."] }, status: 400
   end
 
   def detail
@@ -33,6 +35,9 @@ class UsersController < ApplicationController
     else
       render json: { errors: ["Get details Failed ..."] }, status: 400
     end
+  rescue ActiveRecord::RecordNotFound
+    render json: { errors: ["Get details Failed ..."] }, status: 400
+
   end
 
   private
