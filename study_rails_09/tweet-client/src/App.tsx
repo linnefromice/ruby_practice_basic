@@ -15,6 +15,7 @@ import UserIndex from './layouts/user/UserIndex';
 import ProfileIndex from './layouts/profile/ProfileIndex';
 import SignIn from './layouts/auth/SignIn';
 import SignUp from './layouts/auth/SignUp';
+import About from './layouts/about/About';
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,7 +55,7 @@ const Main = () => {
         <SignUp/>
       </Route>
       <Route path="/about">
-        <div>About Page</div>
+        <About/>
       </Route>
     </Switch>
   )
