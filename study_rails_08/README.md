@@ -66,3 +66,9 @@ gibo dump Rails JetBrains >> .gitignore
 yarn add axios
 yarn add react-bootstrap bootstrap
 ```
+
+#### use graqhql
+
+```text
+yarn add @apollo/client graphql
+```
