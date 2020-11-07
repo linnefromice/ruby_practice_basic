@@ -1,5 +1,6 @@
 module Types
   class TweetType < Types::BaseObject
+    description "A tweet"
     field :id, ID, null: false
     field :sentence, String, null: true
     field :user_name, String, null: true
