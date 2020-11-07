@@ -43,6 +43,21 @@ bin/rails g controller tweets
 - 初期データ作成
   - `db/seeds.rb`
 
+#### Create graphql
+
+```text
+# Add line in Gemfile
+# gem 'graphql'
+# gem 'graphql-rails'
+bundle install
+# for using graphql - downgrade sprockets
+bundle exec rails g graphql:install
+bin/rails g graphql:object Tweet
+# ↑ 同じモデル名を指定すると勝手にカラム足してくれる？
+# if モデルが存在しない時
+# -> bin/rails g graphql:object Tweet id:ID! sentence:String! user_name:String!
+```
+
 ### rails-react-client
 
 ```text
