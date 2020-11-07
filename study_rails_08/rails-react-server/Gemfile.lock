@@ -66,6 +66,10 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphql (1.11.6)
+    graphql-client (0.16.0)
+      activesupport (>= 3.0)
+      graphql (~> 1.8)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     listen (3.2.1)
@@ -151,6 +155,8 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  graphql
+  graphql-client
   listen (~> 3.2)
   puma (~> 4.1)
   rack-cors

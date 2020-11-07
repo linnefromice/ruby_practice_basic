@@ -43,6 +43,15 @@ bin/rails g controller tweets
 - 初期データ作成
   - `db/seeds.rb`
 
+#### Create graphql
+
+```text
+# Add line in Gemfile
+# gem 'graphql'
+# gem 'graphql-rails'
+bundle install
+```
+
 ### rails-react-client
 
 ```text
