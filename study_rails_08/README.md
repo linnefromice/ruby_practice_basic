@@ -50,6 +50,8 @@ bin/rails g controller tweets
 # gem 'graphql'
 # gem 'graphql-rails'
 bundle install
+# for using graphql - downgrade sprockets
+bundle exec rails g graphql:install
 ```
 
 ### rails-react-client
