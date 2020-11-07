@@ -27,6 +27,7 @@ gem 'rack-cors'
 
 gem 'graphql'
 gem 'graphql-client'
+gem 'sprockets', '~> 3.7.2' # for resolving - Expected to find a manifest file in `app/assets/config/manifest.js` (Sprockets::Railtie::ManifestNeededError)
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
