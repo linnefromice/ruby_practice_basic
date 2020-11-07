@@ -66,6 +66,9 @@ GEM
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    graphiql-rails (1.7.0)
+      railties
+      sprockets-rails
     graphql (1.11.6)
     graphql-client (0.16.0)
       activesupport (>= 3.0)
@@ -155,6 +158,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  graphiql-rails
   graphql
   graphql-client
   listen (~> 3.2)
