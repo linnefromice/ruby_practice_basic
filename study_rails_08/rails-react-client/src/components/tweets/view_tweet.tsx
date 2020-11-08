@@ -32,8 +32,8 @@ const ViewTweet: React.FC<TweetProps> = props => {
         <Card.Text>
           {element.sentence}
         </Card.Text>
-        <Button variant="primary">MODIFY</Button>
-        <Button variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
+        <Button className="mx-1" variant="primary">MODIFY</Button>
+        <Button className="mx-1" variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
       </Card.Body>
       <Card.Footer className="text-muted">{dayjs(element.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
     </Card>
