@@ -1,12 +1,13 @@
 import React from 'react'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import { useQuery, gql } from '@apollo/client'
+import { useQuery, useMutation, gql } from '@apollo/client'
 import dayjs from 'dayjs'
 
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
+import Button from "react-bootstrap/Button"
 
 const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
@@ -23,6 +24,16 @@ const QUERY = gql`
 		}
 	}
 `
+const DELETE_MUTATION = gql`
+	mutation DeleteTweet($id: ID!) {
+		deleteTweet(input: { id: $id }) {
+			result
+			tweet {
+				id
+			}
+		}
+	}
+`
 type TweetInterface = {
 	id: string
 	sentence: string
@@ -31,6 +42,8 @@ type TweetInterface = {
 	updatedAt: string
 }
 const Content: React.FC<TweetInterface> = props => {
+	const [deleteMutation, { data }] = useMutation(DELETE_MUTATION)
+
 	return (
 		<Card key={`tweet.${props.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
 			<Card.Header>{props.userName}</Card.Header>
@@ -38,6 +51,10 @@ const Content: React.FC<TweetInterface> = props => {
 				<Card.Text>
 					{props.sentence}
 				</Card.Text>
+				<Button variant="warning" onClick={() => {
+					deleteMutation({ variables: { id: props.id.toString() } })
+					console.log(data)
+				}}>DELETE</Button>
 			</Card.Body>
 			<Card.Footer className="text-muted">
 				<div>Created at : {dayjs(props.createdAt).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
@@ -51,7 +68,6 @@ const Contents: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY)
 	if (loading) return <div>Loading...</div>
 	if (error) return <div>Error!!</div>
-	console.log(data.tweets)
 	return (
 		<Container fluid>
 			<Row xs={1} md={2}>
