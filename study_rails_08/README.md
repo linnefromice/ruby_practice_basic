@@ -56,6 +56,7 @@ bin/rails g graphql:object Tweet
 # ↑ 同じモデル名を指定すると勝手にカラム足してくれる？
 # if モデルが存在しない時
 # -> bin/rails g graphql:object Tweet id:ID! sentence:String! user_name:String!
+bundle exec rails g graphql:mutation DeleteTweet
 ```
 
 ### rails-react-client
