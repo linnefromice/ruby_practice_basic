@@ -57,7 +57,7 @@ const ViewTweet: React.FC<TweetProps> = props => {
           ? <FcCancel onClick={() => setIsEditMode(false)}/>
           : <BsPencilSquare onClick={() => setIsEditMode(true)}/>}
         </span>
-        <Button className="mx-1" variant="primary" onClick={() => handleUpdate(element.id, updatingSentence)}>MODIFY</Button>
+        <Button className="mx-1" variant="primary" onClick={() => handleUpdate(element.id, updatingSentence)} disabled={!isEditMode}>MODIFY</Button>
         <Button className="mx-1" variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
       </Card.Body>
       <Card.Footer className="text-muted">{dayjs(element.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
