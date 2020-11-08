@@ -25,14 +25,14 @@ type TweetInterface = {
 	updatedAt: string
 }
 
-const Tweets: React.FC = () => {
+const Contents: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY)
 	if (loading) return <div>Loading...</div>
 	if (error) return <div>Error!!</div>
 	console.log(data.tweets)
 	return (
 		<div>
-			<span>GraphQL Area</span>
+			
 			{data.tweets.map((tweet:TweetInterface) => (
 				<ul>
 					<li>{tweet.id}</li>
@@ -49,7 +49,8 @@ const Tweets: React.FC = () => {
 export const MainGraphqlContainer: React.FC = () => {
 	return (
 		<ApolloProvider client={client}>
-			<Tweets/>
+			<h4>GraphQL Area</h4>
+			<Contents/>
 		</ApolloProvider>
 	)
 }
