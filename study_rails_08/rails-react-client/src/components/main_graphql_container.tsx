@@ -1,6 +1,7 @@
 import React from 'react'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client'
+import dayjs from 'dayjs'
 
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
@@ -39,8 +40,8 @@ const Content: React.FC<TweetInterface> = props => {
 				</Card.Text>
 			</Card.Body>
 			<Card.Footer className="text-muted">
-				<div>Created at : {props.createdAt}</div>
-				<div>Updated at : {props.updatedAt}</div>
+				<div>Created at : {dayjs(props.createdAt).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
+				<div>Updated at : {dayjs(props.updatedAt).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
 			</Card.Footer>
 		</Card>
 	)

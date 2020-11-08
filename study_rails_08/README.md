@@ -65,6 +65,7 @@ npx create-react-app rails-react-client --template typescript
 gibo dump Rails JetBrains >> .gitignore
 yarn add axios
 yarn add react-bootstrap bootstrap
+yarn add dayjs
 ```
 
 #### use graqhql

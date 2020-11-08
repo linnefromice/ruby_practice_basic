@@ -1,8 +1,9 @@
 import React from "react"
 import axios from 'axios'
-import TweetInterface from "../../model/tweet_interface"
+import dayjs from 'dayjs'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
+import TweetInterface from "../../model/tweet_interface"
 
 type TweetProps = {
     tweet: TweetInterface
@@ -34,7 +35,7 @@ const ViewTweet: React.FC<TweetProps> = props => {
         <Button variant="primary">MODIFY</Button>
         <Button variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
       </Card.Body>
-      <Card.Footer className="text-muted">{element.created_at}</Card.Footer>
+      <Card.Footer className="text-muted">{dayjs(element.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
     </Card>
   )
 }
