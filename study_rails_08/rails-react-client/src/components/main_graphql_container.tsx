@@ -29,6 +29,22 @@ type TweetInterface = {
 	createdAt: string
 	updatedAt: string
 }
+const Content: React.FC<TweetInterface> = props => {
+	return (
+		<Card key={`tweet.${props.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
+			<Card.Header>{props.userName}</Card.Header>
+			<Card.Body>
+				<Card.Text>
+					{props.sentence}
+				</Card.Text>
+			</Card.Body>
+			<Card.Footer className="text-muted">
+				<div>Created at : {props.createdAt}</div>
+				<div>Updated at : {props.updatedAt}</div>
+			</Card.Footer>
+		</Card>
+	)
+}
 
 const Contents: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY)
@@ -40,15 +56,13 @@ const Contents: React.FC = () => {
 			<Row xs={1} md={2}>
 				{data.tweets.map((element:TweetInterface) => (
 					<Col>
-						<Card key={`tweet.${element.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
-							<Card.Header>{element.userName}</Card.Header>
-							<Card.Body>
-								<Card.Text>
-									{element.sentence}
-								</Card.Text>
-							</Card.Body>
-							<Card.Footer className="text-muted">{element.createdAt}</Card.Footer>
-						</Card>
+						<Content
+							id={element.id}
+							sentence={element.sentence}
+							userName={element.userName}
+							createdAt={element.createdAt}
+							updatedAt={element.updatedAt}
+						/>
 					</Col>
 				))}
 			</Row>
