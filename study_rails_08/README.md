@@ -67,6 +67,7 @@ gibo dump Rails JetBrains >> .gitignore
 yarn add axios
 yarn add react-bootstrap bootstrap
 yarn add dayjs
+yarn add react-icons
 ```
 
 #### use graqhql
