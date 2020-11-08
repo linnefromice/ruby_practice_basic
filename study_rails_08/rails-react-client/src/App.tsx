@@ -47,9 +47,8 @@ const Tweets: React.FC = () => {
   )
 }
 
-function App() {
+export const App = () => {
   return (
-    
       <div className="App">
         <MainRestContainer />
         <ApolloProvider client={client}>
@@ -58,5 +57,3 @@ function App() {
       </div>
   );
 }
-
-export default App;
