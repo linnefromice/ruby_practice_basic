@@ -15,6 +15,18 @@ const ViewTweet: React.FC<TweetProps> = props => {
   const element = props.tweet
   const [isEditMode, setIsEditMode] = useState<Boolean>(false)
   const [updatingSentence, setUpdatingSentence] = useState<string>(element.sentence)
+
+  function handleUpdate(tweet_id: number, sentence: string) {
+    axios.patch(`http://localhost:3001/tweets`,
+      {
+        id: tweet_id,
+        sentence: sentence
+      }
+    )
+    .catch((error) => {
+      console.log(error)
+    })
+  }
   
   function handleDelete(tweet_id: number) {
     axios.delete(`http://localhost:3001/tweets`,
@@ -45,7 +57,7 @@ const ViewTweet: React.FC<TweetProps> = props => {
           ? <FcCancel onClick={() => setIsEditMode(false)}/>
           : <BsPencilSquare onClick={() => setIsEditMode(true)}/>}
         </span>
-        <Button className="mx-1" variant="primary" onClick={() => console.log(updatingSentence)}>MODIFY</Button>
+        <Button className="mx-1" variant="primary" onClick={() => handleUpdate(element.id, updatingSentence)}>MODIFY</Button>
         <Button className="mx-1" variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
       </Card.Body>
       <Card.Footer className="text-muted">{dayjs(element.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
