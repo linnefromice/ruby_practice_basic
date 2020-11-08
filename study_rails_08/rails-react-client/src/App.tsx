@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MainContainer from './components/main_container';
+import { MainRestContainer } from './components/main_rest_container';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { useQuery, gql } from '@apollo/client'
 
@@ -49,12 +49,13 @@ const Tweets: React.FC = () => {
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    
       <div className="App">
-        <MainContainer />
+        <MainRestContainer />
+        <ApolloProvider client={client}>
+          <Tweets/>
+        </ApolloProvider>
       </div>
-      <Tweets/>
-    </ApolloProvider>
   );
 }
 

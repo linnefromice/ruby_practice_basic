@@ -5,7 +5,7 @@ import axios from 'axios'
 import TweetInterface from '../model/tweet_interface'
 import TweetsContainer from './tweets/tweets_container'
 
-const MainContainer: React.FC = () => {
+export const MainRestContainer: React.FC = () => {
   const [username, setUsername] = useState("")
   const [tweets, getTweets] = useState<TweetInterface[]>([])
   
@@ -30,5 +30,3 @@ const MainContainer: React.FC = () => {
     );
   }
 }
-
-export default MainContainer;
