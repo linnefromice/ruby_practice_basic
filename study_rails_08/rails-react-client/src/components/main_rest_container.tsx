@@ -25,6 +25,7 @@ export const MainRestContainer: React.FC = () => {
   } else {
     return (
       <UserContext.Provider value={{username, setUsername}}>
+        <h4>RestAPI Area</h4>
         <TweetsContainer tweets={tweets}/>
       </UserContext.Provider>
     );
