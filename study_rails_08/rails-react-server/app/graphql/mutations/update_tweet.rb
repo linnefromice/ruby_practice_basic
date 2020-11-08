@@ -10,7 +10,7 @@ module Mutations
 
     def resolve(id:, sentence:)
       tweet = Tweet.find(id)
-      tweet.update_attributes(sentence)
+      tweet.update_attributes(sentence: sentence)
       {
           tweet: tweet,
           result: tweet.errors.blank?

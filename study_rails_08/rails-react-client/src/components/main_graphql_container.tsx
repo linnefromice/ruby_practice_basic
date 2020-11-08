@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { useQuery, useMutation, gql } from '@apollo/client'
 import dayjs from 'dayjs'
@@ -8,6 +8,9 @@ import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form"
+import { BsPencilSquare } from "react-icons/bs"
+import { FcCancel } from "react-icons/fc";
 
 const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
@@ -21,6 +24,16 @@ const QUERY = gql`
 			userName
 			createdAt
 			updatedAt
+		}
+	}
+`
+const UPDATE_MUTATION = gql`
+	mutation UpdateTweet($id: ID!, $sentence: String!) {
+		updateTweet(input: { id: $id, sentence: $sentence }) {
+			result
+			tweet {
+				id
+			}
 		}
 	}
 `
@@ -42,18 +55,31 @@ type TweetInterface = {
 	updatedAt: string
 }
 const Content: React.FC<TweetInterface> = props => {
-	const [deleteMutation, { data }] = useMutation(DELETE_MUTATION)
+	const [isEditMode, setIsEditMode] = useState<Boolean>(false)
+	const [updatingSentence, setUpdatingSentence] = useState<string>(props.sentence)
+	const [updateMutation] = useMutation(UPDATE_MUTATION)
+	const [deleteMutation] = useMutation(DELETE_MUTATION)
 
 	return (
 		<Card key={`tweet.${props.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
 			<Card.Header>{props.userName}</Card.Header>
 			<Card.Body>
-				<Card.Text>
-					{props.sentence}
-				</Card.Text>
+				{isEditMode
+				? <Form>
+					<Form.Control defaultValue={updatingSentence} onChange={e => setUpdatingSentence(e.target.value)}/>
+				  </Form>
+				: <Card.Text>{props.sentence}</Card.Text>
+				}
+				<span className="mx-1">
+				{isEditMode
+				? <FcCancel onClick={() => setIsEditMode(false)}/>
+				: <BsPencilSquare onClick={() => setIsEditMode(true)}/>}
+				</span>
+				<Button className="mx-1" variant="primary" disabled={!isEditMode} onClick={() => {
+					updateMutation({ variables: { id: props.id.toString(), sentence: updatingSentence } })
+				}}>MODIFY</Button>
 				<Button variant="warning" onClick={() => {
 					deleteMutation({ variables: { id: props.id.toString() } })
-					console.log(data)
 				}}>DELETE</Button>
 			</Card.Body>
 			<Card.Footer className="text-muted">
