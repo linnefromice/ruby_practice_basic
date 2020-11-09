@@ -17,7 +17,6 @@ const TweetContainer: React.FC<TweetProps> = props => {
   const [isEditMode, setIsEditMode] = useState<Boolean>(false)
   const [updatingSentence, setUpdatingSentence] = useState<string>(tweet.sentence)              
   return (
-    <Col>
       <ViewTweet
         tweet={tweet}
         handleUpdate={() => requestUpdate(tweet.id, updatingSentence)}
@@ -27,7 +26,7 @@ const TweetContainer: React.FC<TweetProps> = props => {
         updatingSentence={updatingSentence}
         setUpdatingSentence={setUpdatingSentence}
       />
-    </Col>
+    
   )
 }
 
@@ -61,7 +60,11 @@ const TweetsContainer: React.FC<TweetsProps> = props => {
           </Row>
           <Row xs={1} md={2}>
             {props.tweets.map((element, index) => {
-              return <TweetContainer tweet={element}/>
+              return (
+                <Col>
+                  <TweetContainer tweet={element}/>
+                </Col>
+              )
             })}
           </Row>
         </Container>
