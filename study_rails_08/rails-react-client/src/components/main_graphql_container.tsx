@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/client'
 import dayjs from 'dayjs'
 
 import { QUERY, UPDATE_MUTATION, DELETE_MUTATION } from "../utils/apis/graphql"
-import { TweetInterface } from '../model/tweet_interface'
+import { TweetInterface } from '../model/types'
 import { ViewTweet } from "./tweets/view_tweet"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"

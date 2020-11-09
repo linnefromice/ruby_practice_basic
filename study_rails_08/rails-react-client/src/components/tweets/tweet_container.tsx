@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { requestUpdate, requestDelete } from "../../utils/apis/rest"
-import { TweetInterface } from '../../model/tweet_interface'
+import { TweetInterface } from '../../model/types'
 import { ViewTweet } from './view_tweet'
 
 type TweetProps = {

@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form"
 import { BsPencilSquare } from "react-icons/bs"
 import { FcCancel } from "react-icons/fc";
 
-import { TweetInterface } from "../../model/tweet_interface"
+import { TweetInterface } from "../../model/types"
 import { requestUpdate, requestDelete } from "../../utils/apis/rest"
 
 type TweetProps = {

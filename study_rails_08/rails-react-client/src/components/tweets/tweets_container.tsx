@@ -1,5 +1,5 @@
 import React from 'react'
-import { TweetInterface } from '../../model/tweet_interface'
+import { TweetInterface } from '../../model/types'
 import { TweetContainer } from './tweet_container'
 import { CreateForm } from './create_form'
 import { UserInformation } from '../common/user_information'
