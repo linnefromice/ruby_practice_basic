@@ -1,34 +1,11 @@
-import React, { useState } from 'react'
-import { requestUpdate, requestDelete } from "../../utils/apis/rest"
-
+import React from 'react'
 import TweetInterface from '../../model/tweet_interface'
-import ViewTweet from './view_tweet'
+import TweetContainer from './tweet_container'
 import CreateForm from './create_form'
 import UserInformation from '../common/user_information'
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-
-type TweetProps = {
-  tweet: TweetInterface
-}
-const TweetContainer: React.FC<TweetProps> = props => {
-  const tweet = props.tweet
-  const [isEditMode, setIsEditMode] = useState<Boolean>(false)
-  const [updatingSentence, setUpdatingSentence] = useState<string>(tweet.sentence)              
-  return (
-      <ViewTweet
-        tweet={tweet}
-        handleUpdate={() => requestUpdate(tweet.id, updatingSentence)}
-        handleDelete={() => requestDelete(tweet.id)}
-        isEditMode={isEditMode}
-        setIsEditMode={setIsEditMode}
-        updatingSentence={updatingSentence}
-        setUpdatingSentence={setUpdatingSentence}
-      />
-    
-  )
-}
 
 type TweetsProps = {
     tweets: TweetInterface[]
