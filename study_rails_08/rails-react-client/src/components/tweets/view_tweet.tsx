@@ -38,7 +38,10 @@ export const ViewTweet: React.FC<TweetProps> = props => {
         <Button className="mx-1" variant="primary" onClick={handleUpdate} disabled={!isEditMode}>MODIFY</Button>
         <Button className="mx-1" variant="warning" onClick={handleDelete}>DELETE</Button>
       </Card.Body>
-      <Card.Footer className="text-muted">{dayjs(tweet.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
+      <Card.Footer className="text-muted">
+        <div>Created at : {dayjs(tweet.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
+				<div>Updated at : {dayjs(tweet.updated_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
+      </Card.Footer>
     </Card>
   )
 }
