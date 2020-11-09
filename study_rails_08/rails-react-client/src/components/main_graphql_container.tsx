@@ -4,26 +4,16 @@ import { useQuery, useMutation } from '@apollo/client'
 import dayjs from 'dayjs'
 
 import { QUERY, UPDATE_MUTATION, DELETE_MUTATION } from "../utils/apis/graphql"
+import TweetInterface from '../model/tweet_interface'
+import ViewTweet from "./tweets/view_tweet"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import Card from "react-bootstrap/Card"
-import Button from "react-bootstrap/Button"
-import Form from "react-bootstrap/Form"
-import { BsPencilSquare } from "react-icons/bs"
-import { FcCancel } from "react-icons/fc";
 
 const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
 	cache: new InMemoryCache()
 })
-type TweetInterface = {
-	id: string
-	sentence: string
-	userName: string
-	createdAt: string
-	updatedAt: string
-}
 const Content: React.FC<TweetInterface> = props => {
 	const [isEditMode, setIsEditMode] = useState<Boolean>(false)
 	const [updatingSentence, setUpdatingSentence] = useState<string>(props.sentence)
@@ -31,35 +21,25 @@ const Content: React.FC<TweetInterface> = props => {
 	const [deleteMutation] = useMutation(DELETE_MUTATION)
 
 	return (
-		<Card key={`tweet.${props.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
-			<Card.Header>{props.userName}</Card.Header>
-			<Card.Body>
-				{isEditMode
-				? <Form>
-					<Form.Control defaultValue={updatingSentence} onChange={e => setUpdatingSentence(e.target.value)}/>
-				  </Form>
-				: <Card.Text>{props.sentence}</Card.Text>
-				}
-				<span className="mx-1">
-				{isEditMode
-				? <FcCancel onClick={() => setIsEditMode(false)}/>
-				: <BsPencilSquare onClick={() => setIsEditMode(true)}/>}
-				</span>
-				<Button className="mx-1" variant="primary" disabled={!isEditMode} onClick={() => {
-					updateMutation({ variables: { id: props.id.toString(), sentence: updatingSentence } })
-				}}>MODIFY</Button>
-				<Button variant="warning" onClick={() => {
-					deleteMutation({ variables: { id: props.id.toString() } })
-				}}>DELETE</Button>
-			</Card.Body>
-			<Card.Footer className="text-muted">
-				<div>Created at : {dayjs(props.createdAt).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
-				<div>Updated at : {dayjs(props.updatedAt).format('YYYY/MM/DD HH:mm:ss.SSS')}</div>
-			</Card.Footer>
-		</Card>
+		<ViewTweet
+			tweet={props}
+			handleUpdate={() => updateMutation({ variables: { id: props.id.toString(), sentence: updatingSentence } })}
+			handleDelete={() => deleteMutation({ variables: { id: props.id.toString() } })}
+			isEditMode={isEditMode}
+			setIsEditMode={setIsEditMode}
+			updatingSentence={updatingSentence}
+			setUpdatingSentence={setUpdatingSentence}
+		/>
 	)
 }
 
+type TweetGraphqlInterface = {
+	id: string
+	sentence: string
+	userName: string
+	createdAt: string
+	updatedAt: string
+}
 const Contents: React.FC = () => {
 	const { loading, error, data } = useQuery(QUERY)
 	if (loading) return <div>Loading...</div>
@@ -67,14 +47,14 @@ const Contents: React.FC = () => {
 	return (
 		<Container fluid>
 			<Row xs={1} md={2}>
-				{data.tweets.map((element:TweetInterface) => (
+				{data.tweets.map((element: TweetGraphqlInterface) => (
 					<Col>
 						<Content
-							id={element.id}
+							id={parseInt(element.id)}
 							sentence={element.sentence}
-							userName={element.userName}
-							createdAt={element.createdAt}
-							updatedAt={element.updatedAt}
+							user_name={element.userName}
+							created_at={dayjs(element.createdAt).toDate()}
+							updated_at={dayjs(element.updatedAt).toDate()}
 						/>
 					</Col>
 				))}
