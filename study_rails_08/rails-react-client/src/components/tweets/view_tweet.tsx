@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import axios from 'axios'
 import dayjs from 'dayjs'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { BsPencilSquare } from "react-icons/bs"
 import { FcCancel } from "react-icons/fc";
+
 import TweetInterface from "../../model/tweet_interface"
+import { requestUpdate, requestDelete } from "../../utils/apis/rest"
 
 type TweetProps = {
     tweet: TweetInterface
@@ -15,31 +16,6 @@ const ViewTweet: React.FC<TweetProps> = props => {
   const element = props.tweet
   const [isEditMode, setIsEditMode] = useState<Boolean>(false)
   const [updatingSentence, setUpdatingSentence] = useState<string>(element.sentence)
-
-  function handleUpdate(tweet_id: number, sentence: string) {
-    axios.patch(`http://localhost:3001/tweets`,
-      {
-        id: tweet_id,
-        sentence: sentence
-      }
-    )
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-  
-  function handleDelete(tweet_id: number) {
-    axios.delete(`http://localhost:3001/tweets`,
-      {
-        params: {
-          id: tweet_id
-        }
-      }
-    )
-    .catch((error) => {
-      console.log(error)
-    })
-  }
 
   return (
     <Card key={`tweet.${element.id}`} className="text-center" style={{margin: "1vh 1vw"}}>
@@ -57,8 +33,8 @@ const ViewTweet: React.FC<TweetProps> = props => {
           ? <FcCancel onClick={() => setIsEditMode(false)}/>
           : <BsPencilSquare onClick={() => setIsEditMode(true)}/>}
         </span>
-        <Button className="mx-1" variant="primary" onClick={() => handleUpdate(element.id, updatingSentence)} disabled={!isEditMode}>MODIFY</Button>
-        <Button className="mx-1" variant="warning" onClick={() => handleDelete(element.id)}>DELETE</Button>
+        <Button className="mx-1" variant="primary" onClick={() => requestUpdate(element.id, updatingSentence)} disabled={!isEditMode}>MODIFY</Button>
+        <Button className="mx-1" variant="warning" onClick={() => requestDelete(element.id)}>DELETE</Button>
       </Card.Body>
       <Card.Footer className="text-muted">{dayjs(element.created_at).format('YYYY/MM/DD HH:mm:ss.SSS')}</Card.Footer>
     </Card>
