@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import InputGroup from 'react-bootstrap/InputGroup'
 
-const UserInformation: React.FC = () => {
+export const UserInformation: React.FC = () => {
     const {username, setUsername} = useContext(UserContext)
     const [isLogin, setIsLogin] = useState<boolean>(false)
     const [formValue, setFormValue] = useState<string>("")
