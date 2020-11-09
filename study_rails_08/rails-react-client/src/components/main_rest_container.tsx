@@ -12,7 +12,6 @@ export const MainRestContainer: React.FC = () => {
   useEffect(() => {
     axios.get('http://localhost:3001/tweets')
       .then(results => {
-        console.log(results)
         getTweets(results.data)
       })
       .catch(error => console.log(error))
