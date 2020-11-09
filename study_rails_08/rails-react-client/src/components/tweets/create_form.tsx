@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react"
 import { UserContext } from '../../global/contexts'
+import { requestCreate } from "../../utils/apis/rest"
 
-import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -11,21 +11,6 @@ const CreateForm: React.FC = () => {
 
     function onChangeSentence(e: React.ChangeEvent<HTMLInputElement>) {
         setSentence(e.target.value)
-    }
-
-    function createTweet() {
-        const user_name = (!username) ? "unknown" : username
-
-        if (sentence === "") return
-        axios.post('http://localhost:3001/tweets',
-            {
-                sentence: sentence,
-                user_name: user_name
-            }
-        )
-        .catch((error) => {
-            console.log(error)
-        })
     }
 
     return (
@@ -39,7 +24,7 @@ const CreateForm: React.FC = () => {
                     onChange={onChangeSentence}
                 />
             </Form.Group>
-            <Button type="submit" onClick={createTweet}>つぶやく</Button>
+            <Button type="submit" onClick={() => requestCreate(username, sentence)}>つぶやく</Button>
         </Form>
     )
 }
