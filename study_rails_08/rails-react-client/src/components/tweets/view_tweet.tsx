@@ -1,13 +1,11 @@
-import React, { useState } from "react"
+import React from "react"
 import dayjs from 'dayjs'
 import Card from "react-bootstrap/Card"
 import Button from "react-bootstrap/Button"
 import Form from "react-bootstrap/Form"
 import { BsPencilSquare } from "react-icons/bs"
 import { FcCancel } from "react-icons/fc";
-
 import { TweetInterface } from "../../model/types"
-import { requestUpdate, requestDelete } from "../../utils/apis/rest"
 
 type TweetProps = {
     tweet: TweetInterface,
