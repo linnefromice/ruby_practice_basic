@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
-import { useQuery, useMutation, gql } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import dayjs from 'dayjs'
 
+import { QUERY, UPDATE_MUTATION, DELETE_MUTATION } from "../utils/apis/graphql"
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
@@ -16,37 +17,6 @@ const client = new ApolloClient({
 	uri: 'http://localhost:3001/graphql',
 	cache: new InMemoryCache()
 })
-const QUERY = gql`
-	query {
-		tweets {
-			id
-			sentence
-			userName
-			createdAt
-			updatedAt
-		}
-	}
-`
-const UPDATE_MUTATION = gql`
-	mutation UpdateTweet($id: ID!, $sentence: String!) {
-		updateTweet(input: { id: $id, sentence: $sentence }) {
-			result
-			tweet {
-				id
-			}
-		}
-	}
-`
-const DELETE_MUTATION = gql`
-	mutation DeleteTweet($id: ID!) {
-		deleteTweet(input: { id: $id }) {
-			result
-			tweet {
-				id
-			}
-		}
-	}
-`
 type TweetInterface = {
 	id: string
 	sentence: string
