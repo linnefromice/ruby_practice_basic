@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { UserContext } from '../global/contexts'
 
 import axios from 'axios'
-import TweetInterface from '../model/tweet_interface'
-import TweetsContainer from './tweets/tweets_container'
+import { TweetInterface } from '../model/tweet_interface'
+import { TweetsContainer } from './tweets/tweets_container'
 
 export const MainRestContainer: React.FC = () => {
   const [username, setUsername] = useState("")

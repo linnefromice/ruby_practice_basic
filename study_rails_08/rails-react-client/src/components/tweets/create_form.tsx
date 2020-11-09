@@ -5,7 +5,7 @@ import { requestCreate } from "../../utils/apis/rest"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-const CreateForm: React.FC = () => {
+export const CreateForm: React.FC = () => {
     const { username } = useContext(UserContext)
     const [sentence, setSentence] = useState("")
 
@@ -28,5 +28,3 @@ const CreateForm: React.FC = () => {
         </Form>
     )
 }
-
-export default CreateForm

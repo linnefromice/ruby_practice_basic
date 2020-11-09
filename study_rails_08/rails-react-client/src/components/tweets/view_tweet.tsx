@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form"
 import { BsPencilSquare } from "react-icons/bs"
 import { FcCancel } from "react-icons/fc";
 
-import TweetInterface from "../../model/tweet_interface"
+import { TweetInterface } from "../../model/tweet_interface"
 import { requestUpdate, requestDelete } from "../../utils/apis/rest"
 
 type TweetProps = {
@@ -18,7 +18,7 @@ type TweetProps = {
     updatingSentence: string,
     setUpdatingSentence: React.Dispatch<React.SetStateAction<string>>
 }
-const ViewTweet: React.FC<TweetProps> = props => {
+export const ViewTweet: React.FC<TweetProps> = props => {
   const { tweet, handleUpdate, handleDelete, isEditMode, setIsEditMode, updatingSentence, setUpdatingSentence } = props
 
   return (
@@ -44,5 +44,3 @@ const ViewTweet: React.FC<TweetProps> = props => {
     </Card>
   )
 }
-
-export default ViewTweet

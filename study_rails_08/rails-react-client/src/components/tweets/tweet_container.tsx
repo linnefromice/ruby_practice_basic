@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { requestUpdate, requestDelete } from "../../utils/apis/rest"
-import TweetInterface from '../../model/tweet_interface'
-import ViewTweet from './view_tweet'
+import { TweetInterface } from '../../model/tweet_interface'
+import { ViewTweet } from './view_tweet'
 
 type TweetProps = {
   tweet: TweetInterface
 }
-const TweetContainer: React.FC<TweetProps> = props => {
+export const TweetContainer: React.FC<TweetProps> = props => {
   const tweet = props.tweet
   const [isEditMode, setIsEditMode] = useState<Boolean>(false)
   const [updatingSentence, setUpdatingSentence] = useState<string>(tweet.sentence)              
@@ -22,4 +22,3 @@ const TweetContainer: React.FC<TweetProps> = props => {
     />
   )
 }
-export default TweetContainer
