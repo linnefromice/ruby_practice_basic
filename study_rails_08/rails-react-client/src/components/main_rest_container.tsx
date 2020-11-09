@@ -7,12 +7,12 @@ import TweetsContainer from './tweets/tweets_container'
 
 export const MainRestContainer: React.FC = () => {
   const [username, setUsername] = useState("")
-  const [tweets, getTweets] = useState<TweetInterface[]>([])
+  const [tweets, setTweets] = useState<TweetInterface[]>([])
   
   useEffect(() => {
     axios.get('http://localhost:3001/tweets')
       .then(results => {
-        getTweets(results.data)
+        setTweets(results.data)
       })
       .catch(error => console.log(error))
   }, []);

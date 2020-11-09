@@ -1,12 +1,13 @@
 import axios from 'axios'
 
+const TWEET_ENDPOINT = "http://localhost:3001/tweets"
 export const requestCreate = (
   username: string | null,
   sentence: string,
 ) => {
   const selectedUsername = (!username) ? "unknown" : username
   if (sentence === "") return
-  axios.post('http://localhost:3001/tweets',
+  axios.post(TWEET_ENDPOINT,
     {
       sentence: sentence,
       user_name: selectedUsername
@@ -21,7 +22,7 @@ export const requestUpdate = (
   tweet_id: number,
   sentence: string
 ) => {
-  axios.patch(`http://localhost:3001/tweets`,
+  axios.patch(TWEET_ENDPOINT,
     {
       id: tweet_id,
       sentence: sentence
@@ -35,7 +36,7 @@ export const requestUpdate = (
 export const requestDelete = (
   tweet_id: number
 ) => {
-  axios.delete(`http://localhost:3001/tweets`,
+  axios.delete(TWEET_ENDPOINT,
     {
       params: {
         id: tweet_id
