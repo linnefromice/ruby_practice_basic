@@ -10,7 +10,13 @@ import TweetInterface from "../../model/tweet_interface"
 import { requestUpdate, requestDelete } from "../../utils/apis/rest"
 
 type TweetProps = {
-    tweet: TweetInterface
+    tweet: TweetInterface,
+    handleUpdate: Function,
+    handleDelete: Function,
+    isEditMode: Boolean,
+    setIsEditMode: React.Dispatch<React.SetStateAction<Boolean>>,
+    updatingSentence: string,
+    setUpdatingSentence: React.Dispatch<React.SetStateAction<string>>
 }
 const ViewTweet: React.FC<TweetProps> = props => {
   const element = props.tweet
