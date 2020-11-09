@@ -15,30 +15,25 @@ type TweetsProps = {
   tweets: TweetInterface[]
 }
 const TweetsContainer: React.FC<TweetsProps> = props => {
+  const CommonContents = <Row>
+    <Col>
+      <CreateForm />
+    </Col>
+    <Col>
+      <UserInformation />
+    </Col>
+  </Row>
+
   if (props.tweets.length === 0) {
     return (
       <Container fluid>
-        <Row>
-          <Col>
-            <CreateForm />
-          </Col>
-          <Col>
-            <UserInformation />
-          </Col>
-        </Row>
+        {CommonContents}
       </Container>
     )
   } else {
     return (
       <Container fluid>
-        <Row>
-          <Col>
-            <CreateForm />
-          </Col>
-          <Col>
-            <UserInformation />
-          </Col>
-        </Row>
+        {CommonContents}
         <Row xs={1} md={2}>
           {props.tweets.map((element, index) => {
             return (
